@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Printer Setup Guide Hub -  Installation Guides</title>
-    <meta name="description" content="Educational printer installation guides and troubleshooting tips. Step-by-step instructions for printer setup with official download links." />
+    <title>Printer Setup Guide Hub - Installation Guides</title>
+    <meta
+      name="description"
+      content="Educational printer installation guides and troubleshooting tips. Step-by-step instructions for printer setup with official download links."
+    />
     <style>
       body {
         margin: 0;
@@ -225,18 +228,25 @@
         color: #003366;
         margin: 15px 0 0 0;
       }
-
       .device-image {
-        width: 80px;
-        height: 80px;
-        background-color: #003366;
-        border-radius: 50%;
+        width: 200px;
+        height: 150px; /* Fixed height for consistency */
         margin: 0 auto 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 35px;
-        color: #ffffff;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        border: 2px solid #e0e0e0;
+      }
+
+      .device-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures proper scaling without distortion */
+        object-position: center; /* Centers the image within container */
+        transition: transform 0.3s ease;
       }
 
       .issues-grid {
@@ -258,7 +268,8 @@
         text-align: center;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         border-radius: 10px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease,
+          border-color 0.2s ease;
         cursor: pointer;
         border: 1px solid #ddd;
       }
@@ -291,10 +302,18 @@
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
       }
 
-      .power::before { content: "⏻"; }
-      .wifi::before { content: "📶"; }
-      .scanner::before { content: "📠"; }
-      .add::before { content: "🔧"; }
+      .power::before {
+        content: "⏻";
+      }
+      .wifi::before {
+        content: "📶";
+      }
+      .scanner::before {
+        content: "📠";
+      }
+      .add::before {
+        content: "🔧";
+      }
 
       .info-section {
         background-color: #f0f8ff;
@@ -529,7 +548,7 @@
   </head>
   <body>
     <header class="header">
-      <h1>PrintX</h1>
+      <h1>SmartPrintiX</h1>
       <ul class="nav-menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#guides">Installation Guides</a></li>
@@ -538,30 +557,32 @@
       </ul>
     </header>
 
- 
-
     <section class="setup-section" id="home">
-      <h3> Printer Installation Guides</h3>
+      <h3>Printer Installation Guides</h3>
       <p>
-        Learn how to install printer drivers and troubleshoot common issues with our comprehensive educational guides. Find step-by-step instructions and official download links.
+        Learn how to install printer drivers and troubleshoot common issues with
+        our comprehensive educational guides. Find step-by-step instructions and
+        official download links.
       </p>
     </section>
 
     <section class="devices-section" id="guides">
       <h3>Choose Device Type for Installation Guide</h3>
-      <p>Select the type of device to view educational installation tutorials:</p>
+      <p>
+        Select the type of device to view educational installation tutorials:
+      </p>
       <div class="devices-grid">
         <a href="#model-search" class="device-card">
-          <div class="device-image">📠</div>
+          <div class="device-image">
+            <img src="./images/Scan.jpg" alt="Printer Guide" />
+          </div>
           <p>Scanner Installation Guides</p>
         </a>
         <a href="#model-search" class="device-card">
-          <div class="device-image">🖨</div>
+          <div class="device-image">
+            <img src="./images/Prin.jpg" alt="Printer Guide" />
+          </div>
           <p>Printer Installation Guides</p>
-        </a>
-        <a href="#model-search" class="device-card">
-          <div class="device-image">🖨</div>
-          <p>All-in-One Device Guides</p>
         </a>
       </div>
     </section>
@@ -569,7 +590,9 @@
     <section id="model-search" class="model-search">
       <h3>Find Installation Guide by Model Number</h3>
       <p>
-        Enter your printer model number below to find detailed educational installation guides and troubleshooting articles with official download links.
+        Enter your printer model number below to find detailed educational
+        installation guides and troubleshooting articles with official download
+        links.
       </p>
       <input type="text" placeholder="Example: DCP-L2541DW, HL-L2375DW" />
       <a href="./pages/device.html" class="setup-button">VIEW GUIDE</a>
@@ -596,7 +619,7 @@
 
     <section class="info-section">
       <h2>Need More Educational Resources?</h2>
-      <a href="faq.html" class="info-button">VIEW FAQ</a>
+      <a href="./pages/faq.html" class="info-button">VIEW FAQ</a>
     </section>
 
     <footer class="footer" id="about">
@@ -604,8 +627,12 @@
         <div class="footer-column">
           <h3>EDUCATIONAL RESOURCES</h3>
           <ul>
-            <li><a href="./pages/installation-guides.html">Installation Guides</a></li>
-            <li><a href="./pages/troubleshooting.html">Troubleshooting Tips</a></li>
+            <li>
+              <a href="./pages/installation-guides.html">Installation Guides</a>
+            </li>
+            <li>
+              <a href="./pages/troubleshooting.html">Troubleshooting Tips</a>
+            </li>
             <li><a href="./pages/common-issues.html">Common Issues</a></li>
             <li><a href="./pages/faq.html">FAQ</a></li>
             <li><a href="./pages/about.html">About This Guide</a></li>
@@ -623,15 +650,27 @@
         <div class="footer-column">
           <h3>WEBSITE DISCLAIMER</h3>
           <p>
-            This website provides educational installation guides only. We do not provide technical support services, host any software files, or offer paid services. All printer drivers must be downloaded from official manufacturer websites.
+            This website provides educational installation guides only. We do
+            not provide technical support services, host any software files, or
+            offer paid services. All printer drivers must be downloaded from
+            official manufacturer websites.
           </p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright">© 2025 Printer Setup Guide Hub. Educational Content Only.</p>
+        <p class="copyright">
+          © 2025 Printer Setup Guide Hub. Educational Content Only.
+        </p>
         <div class="disclaimer">
           <p>
-            <strong>IMPORTANT DISCLAIMER:</strong> We are an independent educational website providing installation guides and troubleshooting tips. We are NOT affiliated with any printer manufacturers including Brother, HP, Canon, Epson, or any other brands. All trademarks and brand names are property of their respective owners and are used for identification and educational purposes only. This website does not provide technical support services - for official support, contact the manufacturer directly.
+            <strong>IMPORTANT DISCLAIMER:</strong> We are an independent
+            educational website providing installation guides and
+            troubleshooting tips. We are NOT affiliated with any printer
+            manufacturers including Brother, HP, Canon, Epson, or any other
+            brands. All trademarks and brand names are property of their
+            respective owners and are used for identification and educational
+            purposes only. This website does not provide technical support
+            services - for official support, contact the manufacturer directly.
           </p>
         </div>
       </div>
