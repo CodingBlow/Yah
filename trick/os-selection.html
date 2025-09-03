@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Operating System - PrintX Educational Guides</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .header h1 { 
+            color: #003399; 
+            font-size: 36px; 
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .disclaimer-box {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .disclaimer-box p {
+            margin: 0;
+            font-weight: 600;
+            color: #856404;
+        }
+        
+        .os-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; 
+            margin: 40px 0;
+        }
+        
+        .os-card { 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px 20px; 
+            border-radius: 15px; 
+            text-align: center; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .os-card:hover { 
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .os-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .os-card h3 { 
+            color: #003399; 
+            font-size: 24px; 
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .os-card p { 
+            color: #666; 
+            font-size: 16px; 
+            line-height: 1.6;
+        }
+        
+        .coming-soon {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .coming-soon:hover {
+            transform: none;
+            border-color: transparent;
+        }
+        
+        .coming-soon-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        .back-button { 
+            display: inline-block; 
+            background-color: #003399; 
+            color: white; 
+            padding: 15px 30px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover { 
+            background-color: #002266; 
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            .os-grid { grid-template-columns: 1fr; gap: 20px; }
+            .os-icon { font-size: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 Select Your Operating System</h1>
+            <p>Choose your operating system to view appropriate educational installation guides</p>
+        </div>
+        
+        <div class="disclaimer-box">
+            <p><strong>📚 EDUCATIONAL CONTENT ONLY:</strong> These guides are for learning purposes only. We do not provide technical support services. Contact manufacturers directly for official support.</p>
+        </div>
+        
+        <div class="os-grid">
+            <div class="os-card" onclick="window.location.href='loading.html?os=windows'">
+                <span class="os-icon">🪟</span>
+                <h3>Windows</h3>
+                <p>Educational guides for Windows 10 and Windows 11 printer driver installation. Step-by-step learning tutorials.</p>
+            </div>
+            
+            <div class="os-card coming-soon" onclick="showComingSoon('macOS')">
+                <span class="os-icon">🍎</span>
+                <h3>macOS</h3>
+                <p>Educational guides for Apple Mac printer driver installation and setup tutorials.</p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+            
+            <div class="os-card coming-soon" onclick="showComingSoon('Linux')">
+                <span class="os-icon">🐧</span>
+                <h3>Linux</h3>
+                <p>Educational guides for Linux distributions printer driver installation and configuration.</p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+            
+            <div class="os-card coming-soon" onclick="showComingSoon('ChromeOS')">
+                <span class="os-icon">📱</span>
+                <h3>ChromeOS</h3>
+                <p>Educational guides for Chromebook printer setup and cloud printing tutorials.</p>
+                <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        function showComingSoon(osName) {
+            alert('🚧 ' + osName + ' educational guides are coming soon!\n\n📚 Currently, we offer comprehensive Windows installation guides. More operating systems will be added in future updates.\n\nFor now, please select Windows for available educational content.');
+        }
+    </script>
+</body>
+</html>

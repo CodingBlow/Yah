@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Content Not Available - PrintX</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .error-icon {
+            font-size: 80px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        .container h1 { 
+            color: #d63384; 
+            font-size: 42px; 
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .container h2 {
+            color: #6f42c1;
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #dc3545;
+            margin: 30px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #17a2b8;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+        
+        .info-box ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .info-box li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .available-content {
+            background: #d4edda;
+            color: #155724;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #28a745;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .available-content h3 {
+            margin-top: 0;
+            color: #155724;
+        }
+        
+        .button-group {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #1e7e34;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        .os-name {
+            color: #6f42c1;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container { 
+                padding: 30px 20px; 
+                margin: 10px;
+            }
+            .container h1 { font-size: 32px; }
+            .container h2 { font-size: 22px; }
+            .button-group { flex-direction: column; align-items: center; }
+            .btn { width: 250px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">🚧</div>
+        <h1>Educational Content Under Development</h1>
+        <h2>Sorry, <span class="os-name" id="osName">this operating system</span> guides are not ready yet!</h2>
+        
+        <div class="error-message">
+            <strong>📚 Educational Development Notice:</strong><br>
+            We're currently developing comprehensive educational guides for this operating system. Our team is working hard to create high-quality learning content for all platforms.
+        </div>
+        
+        <div class="info-box">
+            <h3>🔍 What's Coming Soon:</h3>
+            <ul>
+                <li><strong>Step-by-Step Installation Guides:</strong> Detailed educational tutorials</li>
+                <li><strong>Troubleshooting Learning Modules:</strong> Common issue resolution guides</li>
+                <li><strong>Best Practices Education:</strong> Professional installation techniques</li>
+                <li><strong>Official Resource Links:</strong> Direct manufacturer support connections</li>
+                <li><strong>Interactive Learning Tools:</strong> Enhanced educational experience</li>
+            </ul>
+        </div>
+        
+        <div class="available-content">
+            <h3>✅ Currently Available Educational Content:</h3>
+            <ul>
+                <li><strong>Windows 10/11 Guides:</strong> Comprehensive printer installation tutorials</li>
+                <li><strong>Brother Printer Focus:</strong> Specialized educational content</li>
+                <li><strong>Troubleshooting Guides:</strong> Common issue learning modules</li>
+                <li><strong>Official Support Links:</strong> Direct manufacturer connections</li>
+            </ul>
+        </div>
+        
+        <div style="background: #fff3cd; color: #856404; padding: 20px; border-radius: 8px; margin: 30px 0;">
+            <p><strong>📞 Need Immediate Help?</strong><br>
+            Contact the printer manufacturer directly for official technical support:</p>
+            <ul style="text-align: left; margin-top: 15px;">
+                <li><strong>Brother:</strong> support.brother.com</li>
+                <li><strong>HP:</strong> support.hp.com</li>
+                <li><strong>Canon:</strong> canon.com/support</li>
+                <li><strong>Epson:</strong> epson.com/support</li>
+            </ul>
+        </div>
+        
+        <div class="button-group">
+            <a href="os-selection.html" class="btn btn-primary">🔄 Try Different OS</a>
+            <a href="./pages/device.html" class="btn btn-success">📖 View Windows Guides</a>
+            <a href="index.html" class="btn btn-secondary">🏠 Back to Home</a>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #6c757d;">
+            <p><strong>📚 Educational Website Notice:</strong><br>
+            This website provides educational installation guides only. We do not offer technical support services. All content is for learning purposes and users should contact manufacturers directly for official support.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Get OS from URL parameter and display
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedOS = urlParams.get('os') || 'Unknown';
+        
+        const osNames = {
+            'mac': 'macOS',
+            'linux': 'Linux', 
+            'chromeos': 'ChromeOS',
+            'chrome': 'ChromeOS'
+        };
+        
+        const displayName = osNames[selectedOS.toLowerCase()] || selectedOS;
+        document.getElementById('osName').textContent = displayName;
+        
+        // Update page title
+        document.title = displayName + ' Educational Content Not Available - PrintX';
+    </script>
+</body>
+</html>

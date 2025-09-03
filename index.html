@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Printer Setup Guide Hub -  Installation Guides</title>
+    <meta name="description" content="Educational printer installation guides and troubleshooting tips. Step-by-step instructions for printer setup with official download links." />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", "Helvetica", sans-serif;
+        background-color: #ffffff;
+        color: #1a1a1a;
+      }
+
+      .header {
+        background-color: #003399;
+        color: #ffffff;
+        padding: 20px 40px;
+        text-align: left;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 35px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-menu li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-menu li a:hover {
+        color: #ff6600;
+      }
+
+      .setup-section {
+        padding: 40px 20px;
+        text-align: center;
+        background-color: #ffffff;
+        position: relative;
+      }
+
+      .setup-section h3 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #000000;
+      }
+
+      .setup-section p {
+        max-width: 800px;
+        font-size: 22px;
+        margin: 0 auto;
+        color: #2c2c2c;
+        font-weight: 500;
+      }
+
+      .setup-section::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 1px;
+        background-color: #666666;
+      }
+
+      .disclaimer-banner {
+        background-color: #f0f8ff;
+        padding: 20px 30px;
+        text-align: center;
+        border: 2px solid #003366;
+        margin: 20px;
+        border-radius: 8px;
+      }
+
+      .disclaimer-banner p {
+        font-size: 18px;
+        font-weight: 600;
+        color: #003366;
+        margin: 0;
+      }
+
+      .model-search {
+        background-color: #0d2ea5;
+        color: #ffffff;
+        padding: 60px 30px;
+        text-align: center;
+        border-bottom: 4px solid #0d2ea5;
+      }
+
+      .model-search h3 {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .model-search p {
+        font-size: 24px;
+        margin: 15px 0 30px;
+        font-weight: 500;
+      }
+
+      .model-search input {
+        width: 90%;
+        max-width: 500px;
+        padding: 20px 24px;
+        margin: 20px 0 30px;
+        border-radius: 8px;
+        border: 3px solid #0066cc;
+        font-size: 22px;
+        color: #1a1a1a;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        font-weight: 600;
+      }
+
+      .model-search input:focus {
+        outline: none;
+        border-color: #ff6600;
+        box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.3);
+      }
+
+      .setup-button {
+        background-color: #ff6600;
+        color: #ffffff;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 22px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        min-width: 200px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .setup-button:hover {
+        background-color: #cc5200;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .setup-button:active {
+        transform: translateY(0);
+      }
+
+      .devices-section {
+        padding: 40px 30px;
+        text-align: center;
+        background-color: #fafafa;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .devices-section h3 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #000000;
+      }
+
+      .devices-section p {
+        font-size: 22px;
+        margin-bottom: 40px;
+        color: #2c2c2c;
+        font-weight: 500;
+      }
+
+      .devices-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .device-card {
+        text-align: center;
+        background: #ffffff;
+        padding: 30px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        flex: 0 0 auto;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .device-card:hover {
+        transform: scale(1.05);
+        border-color: #ff6600;
+      }
+
+      .device-card p {
+        font-size: 20px;
+        font-weight: 600;
+        color: #003366;
+        margin: 15px 0 0 0;
+      }
+
+      .device-image {
+        width: 80px;
+        height: 80px;
+        background-color: #003366;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        color: #ffffff;
+      }
+
+      .issues-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 15px;
+        background-color: #f8f8f8;
+        border-bottom: 2px solid #e0e0e0;
+        max-width: 100%;
+        overflow-x: auto;
+        flex-wrap: wrap;
+      }
+
+      .issue-card {
+        flex: 0 0 220px;
+        background-color: #fff;
+        padding: 25px 15px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        cursor: pointer;
+        border: 1px solid #ddd;
+      }
+
+      .issue-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        border-color: #ff6600;
+      }
+
+      .issue-card p {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c2c2c;
+        margin: 0;
+      }
+
+      .icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #003366;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 700;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .power::before { content: "⏻"; }
+      .wifi::before { content: "📶"; }
+      .scanner::before { content: "📠"; }
+      .add::before { content: "🔧"; }
+
+      .info-section {
+        background-color: #f0f8ff;
+        padding: 50px 30px;
+        text-align: center;
+        border-top: 3px solid #003366;
+      }
+
+      .info-section h2 {
+        font-size: 38px;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        font-weight: 700;
+        color: #003366;
+        line-height: 1.4;
+      }
+
+      .info-button {
+        background-color: #009900;
+        color: #ffffff;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 22px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        min-width: 250px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .info-button:hover {
+        background-color: #006600;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .footer {
+        background-color: #003399;
+        color: #ffffff;
+        padding: 40px 40px 20px;
+        text-align: left;
+        box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #ffffff;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-column ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-column ul li a:hover {
+        color: #ff6600;
+        text-decoration: underline;
+      }
+
+      .footer-column p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #cccccc;
+      }
+
+      .footer-bottom {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        margin-top: 20px;
+      }
+
+      .footer-bottom p {
+        margin: 10px 0;
+        font-size: 14px;
+        color: #cccccc;
+      }
+
+      .footer-bottom .copyright {
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      .footer-bottom .disclaimer {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 15px;
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 15px 20px;
+        }
+
+        .header h1 {
+          font-size: 28px;
+          margin-bottom: 15px;
+        }
+
+        .nav-menu {
+          flex-direction: row;
+          gap: 15px;
+          flex-wrap: wrap;
+        }
+
+        .setup-section {
+          padding: 30px 15px;
+        }
+
+        .setup-section h3 {
+          font-size: 28px;
+        }
+
+        .setup-section p {
+          font-size: 18px;
+        }
+
+        .model-search {
+          padding: 40px 20px;
+        }
+
+        .model-search h3 {
+          font-size: 28px;
+        }
+
+        .model-search p {
+          font-size: 18px;
+        }
+
+        .model-search input {
+          width: 95%;
+          font-size: 18px;
+          padding: 15px 20px;
+        }
+
+        .setup-button,
+        .info-button {
+          font-size: 18px;
+          padding: 15px 30px;
+          min-width: 180px;
+        }
+
+        .devices-section {
+          padding: 30px 20px;
+        }
+
+        .devices-section h3 {
+          font-size: 28px;
+        }
+
+        .devices-grid {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .device-card {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .issues-grid {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          padding: 30px 15px;
+        }
+
+        .issue-card {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .info-section {
+          padding: 40px 20px;
+        }
+
+        .info-section h2 {
+          font-size: 28px;
+        }
+
+        .footer {
+          padding: 30px 20px 20px;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          gap: 25px;
+        }
+
+        .footer-column {
+          min-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>PrintX</h1>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#guides">Installation Guides</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </header>
+
+ 
+
+    <section class="setup-section" id="home">
+      <h3> Printer Installation Guides</h3>
+      <p>
+        Learn how to install printer drivers and troubleshoot common issues with our comprehensive educational guides. Find step-by-step instructions and official download links.
+      </p>
+    </section>
+
+    <section class="devices-section" id="guides">
+      <h3>Choose Device Type for Installation Guide</h3>
+      <p>Select the type of device to view educational installation tutorials:</p>
+      <div class="devices-grid">
+        <a href="#model-search" class="device-card">
+          <div class="device-image">📠</div>
+          <p>Scanner Installation Guides</p>
+        </a>
+        <a href="#model-search" class="device-card">
+          <div class="device-image">🖨</div>
+          <p>Printer Installation Guides</p>
+        </a>
+        <a href="#model-search" class="device-card">
+          <div class="device-image">🖨</div>
+          <p>All-in-One Device Guides</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="model-search" class="model-search">
+      <h3>Find Installation Guide by Model Number</h3>
+      <p>
+        Enter your printer model number below to find detailed educational installation guides and troubleshooting articles with official download links.
+      </p>
+      <input type="text" placeholder="Example: DCP-L2541DW, HL-L2375DW" />
+      <a href="./pages/device.html" class="setup-button">VIEW GUIDE</a>
+    </section>
+
+    <section class="issues-grid" id="troubleshooting">
+      <div class="issue-card">
+        <div class="icon power"></div>
+        <p>Printer Offline Issues Guide</p>
+      </div>
+      <div class="issue-card">
+        <div class="icon wifi"></div>
+        <p>Wi-Fi Connection Setup Guide</p>
+      </div>
+      <div class="issue-card">
+        <div class="icon scanner"></div>
+        <p>Scanner Setup Tutorial</p>
+      </div>
+      <div class="issue-card">
+        <div class="icon add"></div>
+        <p>Paper Jam Solutions</p>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <h2>Need More Educational Resources?</h2>
+      <a href="faq.html" class="info-button">VIEW FAQ</a>
+    </section>
+
+    <footer class="footer" id="about">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>EDUCATIONAL RESOURCES</h3>
+          <ul>
+            <li><a href="./pages/installation-guides.html">Installation Guides</a></li>
+            <li><a href="./pages/troubleshooting.html">Troubleshooting Tips</a></li>
+            <li><a href="./pages/common-issues.html">Common Issues</a></li>
+            <li><a href="./pages/faq.html">FAQ</a></li>
+            <li><a href="./pages/about.html">About This Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>IMPORTANT INFORMATION</h3>
+          <ul>
+            <li><a href="./pages/privacy.html">Privacy Policy</a></li>
+            <li><a href="./pages/terms.html">Terms of Service</a></li>
+            <li><a href="./pages/disclaimer.html">Disclaimer</a></li>
+            <li><a href="./pages/contact.html">Contact Information</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>WEBSITE DISCLAIMER</h3>
+          <p>
+            This website provides educational installation guides only. We do not provide technical support services, host any software files, or offer paid services. All printer drivers must be downloaded from official manufacturer websites.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 Printer Setup Guide Hub. Educational Content Only.</p>
+        <div class="disclaimer">
+          <p>
+            <strong>IMPORTANT DISCLAIMER:</strong> We are an independent educational website providing installation guides and troubleshooting tips. We are NOT affiliated with any printer manufacturers including Brother, HP, Canon, Epson, or any other brands. All trademarks and brand names are property of their respective owners and are used for identification and educational purposes only. This website does not provide technical support services - for official support, contact the manufacturer directly.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
