@@ -3,99 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disclaimer - Printer Setup Guide Hub</title>
+    <title>Legal Disclaimer - Brother Printer Educational Guide</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; color: #333; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #003399; text-align: center; font-size: 36px; margin-bottom: 30px; }
-        h2 { color: #333; border-bottom: 3px solid #003399; padding-bottom: 10px; margin-top: 30px; }
-        h3 { color: #666; margin-top: 25px; }
-        p { line-height: 1.8; color: #555; margin-bottom: 15px; }
-        .warning-box { background-color: #dc3545; color: white; padding: 25px; border-radius: 8px; margin: 25px 0; text-align: center; font-weight: bold; }
-        .info-box { background-color: #e9f7ff; padding: 20px; border-left: 5px solid #003399; margin: 20px 0; border-radius: 5px; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #212529;
+            line-height: 1.6;
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1); 
+        }
+        h1 { 
+            color: #dc3545; 
+            text-align: center; 
+            font-size: 2.5em; 
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        h2 { 
+            color: #003399; 
+            border-bottom: 3px solid #003399; 
+            padding-bottom: 8px; 
+            margin-top: 35px;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        h3 { 
+            color: #495057; 
+            margin-top: 25px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        p { 
+            line-height: 1.7; 
+            color: #495057; 
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .critical-warning { 
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white; 
+            padding: 25px; 
+            border-radius: 10px; 
+            margin: 25px 0; 
+            text-align: center; 
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(220, 53, 69, 0.3);
+        }
+        .warning-box { 
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 25px 0; 
+            border-left: 5px solid #ffc107;
+            box-shadow: 0 3px 15px rgba(255, 193, 7, 0.2);
+        }
+        .info-box { 
+            background: linear-gradient(135deg, #e7f3ff 0%, #cce7ff 100%);
+            padding: 20px; 
+            border-left: 5px solid #007bff; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 123, 255, 0.15);
+        }
+        .legal-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+        }
         ul { padding-left: 25px; }
-        li { margin-bottom: 8px; line-height: 1.6; }
-        .back-button { display: inline-block; background-color: #003399; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 30px; }
-        .back-button:hover { background-color: #002266; }
+        li { 
+            margin-bottom: 8px; 
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .back-button { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #003399 0%, #0066cc 100%);
+            color: white; 
+            padding: 15px 30px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover { 
+            background: linear-gradient(135deg, #002266 0%, #004499 100%);
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+        .contact-warning {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #dc3545;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        .compliance-notice {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            margin: 25px 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⚠ Legal Disclaimer</h1>
+        <h1>⚠️ Legal Disclaimer & Terms</h1>
         
-        <div class="warning-box">
-            <h2>IMPORTANT: READ BEFORE USING THIS WEBSITE</h2>
-            <p>This website provides educational content only. We do not provide technical support services, host software files, or offer any paid services.</p>
+        <div class="critical-warning">
+            <h2 style="margin: 0; color: white; border: none; padding: 0;">MANDATORY NOTICE - READ BEFORE PROCEEDING</h2>
+            <p style="margin: 10px 0 0 0; font-size: 16px;">This website provides EDUCATIONAL CONTENT ONLY. We do NOT provide technical support services, software downloads, or any paid assistance.</p>
         </div>
         
-        <h2>🔒 Educational Purpose Only</h2>
-        <p>Printer Setup Guide Hub is an independent educational website that provides informational guides and tutorials about printer driver installation and basic troubleshooting. All content is for educational and informational purposes only.</p>
+        <div class="compliance-notice">
+            <h3>🎓 Educational Purpose & Compliance Statement</h3>
+            <p><strong>Brother Printer Educational Guide</strong> is an independent educational website that provides informational tutorials and learning materials about Brother printer driver installation, basic troubleshooting concepts, and educational guidance. <strong>All content is strictly for educational and informational purposes only and complies with applicable advertising policies.</strong></p>
+        </div>
         
-        <h2>🚫 Limitation of Services</h2>
+        <h2>🚫 Explicit Service Limitations</h2>
         
-        <div class="info-box">
-            <h3>We Do NOT Provide:</h3>
+        <div class="legal-section">
+            <h3>We Explicitly DO NOT Provide:</h3>
             <ul>
-                <li><strong>Technical Support Services:</strong> We do not provide customer support, technical assistance, or troubleshooting services</li>
-                <li><strong>Software Downloads:</strong> We do not host, distribute, or provide any software, drivers, or executable files</li>
-                <li><strong>Paid Services:</strong> We do not charge for any services or offer premium support</li>
-                <li><strong>Official Manufacturer Support:</strong> We are not authorized representatives of any printer manufacturer</li>
-                <li><strong>Warranty or Repair Services:</strong> We do not provide warranty support or repair services</li>
+                <li><strong>Direct Technical Support Services:</strong> We do not provide customer support, technical assistance, live chat, phone support, or troubleshooting services of any kind</li>
+                <li><strong>Software Downloads or Hosting:</strong> We do not host, distribute, provide, or make available any software, drivers, firmware, or executable files</li>
+                <li><strong>Paid or Premium Services:</strong> We do not charge for any services, offer premium support, or provide paid assistance</li>
+                <li><strong>Official Manufacturer Support:</strong> We are not authorized representatives, agents, or affiliates of Brother Industries or any printer manufacturer</li>
+                <li><strong>Warranty, Repair, or Replacement Services:</strong> We do not provide warranty support, repair services, or product replacements</li>
+                <li><strong>Account Recovery or Installation Services:</strong> We do not provide account recovery, remote installation, or hands-on technical assistance</li>
+                <li><strong>Business or Enterprise Support:</strong> We do not provide business consulting, enterprise solutions, or professional IT services</li>
             </ul>
         </div>
         
-        <h2>🏢 Independence & Non-Affiliation</h2>
-        <p>Printer Setup Guide Hub is an independent website and is <strong>NOT affiliated, associated, authorized, endorsed by, or in any way officially connected</strong> with:</p>
-        <ul>
-            <li>Brother Industries, Ltd. or any of its subsidiaries</li>
-             </ul>
-        
-        <h2>™ Trademark Disclaimer</h2>
-        <p>All brand names, product names, company names, trademarks, service marks, and registered trademarks mentioned on this website are the property of their respective owners. These are used for identification and educational purposes only and do not imply any affiliation or endorsement.</p>
-        
-        <h2>⚖ Use at Your Own Risk</h2>
-        <p>The information provided on this website is on an "as is" basis. Users acknowledge that:</p>
-        <ul>
-            <li>They use this information entirely at their own risk</li>
-            <li>We make no warranties about the accuracy or completeness of the information</li>
-            <li>We are not responsible for any damages, data loss, or issues arising from the use of this information</li>
-            <li>Users should always verify information with official manufacturer sources</li>
-        </ul>
-        
-        <h2>🔗 External Links Disclaimer</h2>
-        <p>This website contains links to external websites (primarily official manufacturer support sites). We:</p>
-        <ul>
-            <li>Are not responsible for the content of external sites</li>
-            <li>Do not endorse or guarantee the accuracy of external content</li>
-            <li>Recommend users review the privacy policies of external sites</li>
-            <li>Are not liable for any damages resulting from external site interactions</li>
-        </ul>
-        
-        <h2>📞 Official Support Channels</h2>
-        
-        <div class="info-box">
-            <h3>For Technical Support, Contact Manufacturers Directly:</h3>
-            <ul>
-                <li><strong>Brother:</strong> Visit support.brother.com for official support</li>
-                </ul>
-        </div>
-        
-        <h2>🔄 Changes to This Disclaimer</h2>
-        <p>We reserve the right to update or modify this disclaimer at any time without prior notice. Users are encouraged to review this page periodically for any changes.</p>
-        
-        <h2>📧 Questions About This Disclaimer</h2>
-        <p>For questions specifically about this disclaimer or other legal matters related to this website, contact: legal@printerguides.com</p>
-        <p><strong>Note:</strong> This email is for legal/disclaimer questions only. We do not provide technical support.</p>
-        
-        <h2>🗓 Last Updated</h2>
-        <p><strong>This disclaimer was last updated on September 1, 2025.</strong></p>
+        <h2>🏢 Complete Independence & Non-Affiliation Declaration</h2>
         
         <div class="warning-box">
-            <h3>BY USING THIS WEBSITE, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THIS DISCLAIMER.</h3>
+            <p><strong>Brother Printer Educational Guide is completely independent and is NOT affiliated, associated, authorized, endorsed by, sponsored by, or in any way officially connected with:</strong></p>
+            <ul>
+                <li><strong>Brother Industries, Ltd.</strong> or any of its subsidiaries, divisions, or affiliated companies worldwide</li>
+                <li><strong>Any official Brother support channels,</strong> service centers, or authorized repair facilities</li>
+                <li><strong>Any printer manufacturer,</strong> distributor, or retailer</li>
+                <li><strong>Any technical support company</strong> or service provider</li>
+            </ul>
+            <p><strong>We operate as a completely separate and independent educational resource.</strong></p>
         </div>
         
-        <div style="text-align: center;">
-            <a href="/index.html" class="back-button">← Back to Home</a>
+        <h2>™ Comprehensive Trademark & Intellectual Property Notice</h2>
+        
+        <div class="info-box">
+            <p>All brand names, product names, company names, trademarks, service marks, registered trademarks, and logos mentioned on this website are the exclusive property of their respective owners and are protected by applicable intellectual property laws.</p>
+            <p><strong>These names and marks are used solely for:</strong></p>
+            <ul>
+                <li>Educational identification and reference purposes</li>
+                <li>Providing clear guidance about specific printer models</li>
+                <li>Directing users to appropriate official manufacturer resources</li>
+            </ul>
+            <p><strong>Such usage does not imply any affiliation, endorsement, sponsorship, or business relationship with the trademark owners.</strong></p>
+        </div>
+        
+        <h2>⚖️ Legal Liability & Risk Disclaimers</h2>
+        
+        <div class="legal-section">
+            <h3>Use at Your Own Risk - Complete Disclaimer of Liability:</h3>
+            <p>The information provided on this website is on an "AS IS" and "AS AVAILABLE" basis. Users explicitly acknowledge and agree that:</p>
+            <ul>
+                <li><strong>Complete Risk Assumption:</strong> They use all information entirely at their own risk and discretion</li>
+                <li><strong>No Warranties:</strong> We make no warranties, express or implied, about the accuracy, completeness, reliability, or suitability of the information</li>
+                <li><strong>No Liability for Damages:</strong> We are not responsible for any damages, data loss, system issues, hardware problems, or any other consequences arising from the use of this information</li>
+                <li><strong>Verification Responsibility:</strong> Users must always verify information with official manufacturer sources before taking any action</li>
+                <li><strong>Professional Consultation:</strong> Complex technical issues require consultation with qualified professionals or official manufacturer support</li>
+            </ul>
+        </div>
+        
+        <h2>🔗 External Links & Third-Party Content Disclaimer</h2>
+        
+        <div class="info-box">
+            <p>This website contains links to external websites, primarily official manufacturer support sites. Regarding external links, we explicitly state:</p>
+            <ul>
+                <li><strong>No Control or Responsibility:</strong> We have no control over and are not responsible for the content, privacy policies, or practices of external sites</li>
+                <li><strong>No Endorsement:</strong> Links do not constitute endorsement of external site content, services, or policies</li>
+                <li><strong>User Responsibility:</strong> Users should review privacy policies and terms of external sites before interaction</li>
+                <li><strong>No Liability:</strong> We are not liable for any damages, losses, or issues resulting from external site interactions</li>
+            </ul>
+        </div>
+        
+        <h2>📞 Official Support Channels - Mandatory Reference</h2>
+        
+        <div class="critical-warning">
+            <h3 style="color: white; margin: 0; border: none; padding: 0;">For ALL Technical Support, Contact Official Sources ONLY:</h3>
+            <ul style="text-align: left; margin: 15px 0;">
+                <li><strong>Brother Official Support:</strong> Visit <em>support.brother.com</em> for authentic Brother technical assistance, drivers, and professional support services</li>
+            </ul>
+            <p style="margin: 0; font-size: 14px;"><strong>These are the ONLY authorized sources for technical support, software downloads, and warranty services.</strong></p>
+        </div>
+        
+        <h2>🔄 Disclaimer Modifications & Updates</h2>
+        
+        <div class="legal-section">
+            <p>We reserve the absolute right to update, modify, or change this disclaimer at any time without prior notice or consent. Such modifications will be effective immediately upon posting. Users are strongly encouraged to review this disclaimer periodically for any changes. Continued use of this website after modifications constitutes acceptance of the updated terms.</p>
+        </div>
+        
+        <h2>📧 Legal Contact Information</h2>
+        
+        <div class="contact-warning">
+            <p><strong>Legal/Disclaimer Questions ONLY:</strong> Info@Smartprintix.com</p>
+            <p><strong>IMPORTANT:</strong> This email address is exclusively for legal and disclaimer-related questions. We do NOT provide technical support, troubleshooting assistance, or any form of customer service through this contact method.</p>
+        </div>
+        
+        <h2>🗓 Last Updated Information</h2>
+        
+        <div class="info-box">
+            <p><strong>This legal disclaimer was last updated on September 9, 2025.</strong></p>
+            <p>Previous version date: September 1, 2025</p>
+        </div>
+        
+        <div class="critical-warning">
+            <h3 style="color: white; margin: 0; border: none; padding: 0;">BINDING AGREEMENT ACKNOWLEDGMENT</h3>
+            <p style="margin: 10px 0 0 0;">BY ACCESSING, BROWSING, OR USING THIS WEBSITE IN ANY MANNER, YOU EXPLICITLY ACKNOWLEDGE THAT YOU HAVE READ, FULLY UNDERSTOOD, AND UNCONDITIONALLY AGREE TO BE LEGALLY BOUND BY ALL TERMS OF THIS DISCLAIMER AND ANY FUTURE MODIFICATIONS.</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #dee2e6;">
+            <p style="color: #6c757d; font-style: italic; margin-bottom: 20px;">This disclaimer ensures full compliance with advertising policies and legal requirements.</p>
+            <a href="/index.html" class="back-button">← Return to Educational Hub</a>
         </div>
     </div>
 </body>

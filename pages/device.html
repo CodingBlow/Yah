@@ -3,319 +3,643 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Printer Installation Guide - Educational Tutorial</title>
+    <title>Brother Printer Installation Guide - Educational Tutorial</title>
     <meta
       name="description"
-      content="Step-by-step educational guide for printer driver installation with official download links and troubleshooting tips."
+      content="Complete educational guide for Brother printer driver installation, setup, and troubleshooting."
     />
-    <link rel="stylesheet" href="styles.css" />
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      * {
         margin: 0;
         padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
+        box-sizing: border-box;
       }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: #f8f9fa;
+        color: #212529;
+        line-height: 1.5;
+        font-size: 15px;
       }
 
       .header {
-        background-color: #003399;
+        background: linear-gradient(135deg, #003399 0%, #0066cc 100%);
         color: white;
-        padding: 20px;
+        padding: 30px 20px;
         text-align: center;
-      }
-
-      .breadcrumb {
-        background-color: #e9ecef;
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-
-      .breadcrumb a {
-        color: #007bff;
-        text-decoration: none;
-      }
-
-      .guide-content {
-        background: white;
-        padding: 30px;
-        margin: 20px 0;
-        border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
-      .warning-box {
-        background-color: #fff3cd;
-        border: 1px solid #ffeaa7;
-        padding: 15px;
-        border-radius: 5px;
-        margin: 20px 0;
+      .header h1 {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+        font-weight: 700;
       }
 
-      .step-box {
-        background-color: #e9f7ff;
-        border-left: 4px solid #007bff;
+      .header p {
+        font-size: 1em;
+        opacity: 0.9;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px 20px;
+      }
+
+      .warning-box {
+        background: #fff3cd;
+        border: 2px solid #ffeaa7;
         padding: 15px;
-        margin: 15px 0;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border-left: 4px solid #ffc107;
+        font-size: 14px;
+      }
+
+      .section {
+        background: white;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      }
+
+      .section-header {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        padding: 20px 25px;
+        text-align: center;
+      }
+
+      .section-header h2 {
+        font-size: 1.6em;
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .section-content {
+        padding: 25px;
+      }
+
+      .method {
+        background: #f8f9fa;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+      }
+
+      .method-header {
+        background: #003399;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .method-number {
+        background: white;
+        color: #003399;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .method-title {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+
+      .method-content {
+        padding: 20px;
+      }
+
+      .step {
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+        overflow: hidden;
+      }
+
+      .step-header {
+        background: #e7f3ff;
+        padding: 12px 15px;
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .step-header:hover {
+        background: #cce7ff;
+      }
+
+      .step-number {
+        background: #007bff;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 12px;
+      }
+
+      .step-title {
+        font-size: 1em;
+        font-weight: 600;
+        color: #003399;
+      }
+
+      .step-content {
+        padding: 15px;
+        display: none;
+        font-size: 14px;
+      }
+
+      .step-content.active {
+        display: block;
+      }
+
+      .step-content h4 {
+        font-size: 15px;
+        margin-bottom: 8px;
+        color: #003399;
+      }
+
+      .step-content p {
+        margin-bottom: 10px;
+      }
+
+      .step-content ul,
+      .step-content ol {
+        margin: 10px 0 10px 20px;
+      }
+
+      .step-content li {
+        margin-bottom: 5px;
+      }
+
+      .tip-box {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 12px 0;
+        border-left: 4px solid #17a2b8;
+        font-size: 13px;
       }
 
       .download-section {
-        background-color: #d4edda;
+        background: #d4edda;
         border: 1px solid #c3e6cb;
+        border-radius: 8px;
         padding: 20px;
-        border-radius: 5px;
         margin: 20px 0;
         text-align: center;
       }
 
       .official-link {
         display: inline-block;
-        background-color: #28a745;
+        background: #28a745;
         color: white;
-        padding: 12px 25px;
+        padding: 10px 20px;
+        border-radius: 6px;
         text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        margin: 10px 0;
+        font-weight: 600;
+        font-size: 14px;
+        margin: 8px;
+        transition: background 0.3s;
       }
 
       .official-link:hover {
-        background-color: #218838;
+        background: #218838;
+        color: white;
+        text-decoration: none;
+      }
+
+      .troubleshoot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .troubleshoot-card {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #dc3545;
+      }
+
+      .troubleshoot-card h4 {
+        color: #dc3545;
+        font-size: 14px;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .troubleshoot-card p {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .troubleshoot-card ul {
+        font-size: 13px;
+        margin-left: 15px;
+      }
+
+      .troubleshoot-card li {
+        margin-bottom: 4px;
+      }
+
+      h3 {
+        font-size: 1.2em;
+        margin: 20px 0 12px 0;
+        color: #003399;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.8em;
+        }
+        .container {
+          padding: 20px 15px;
+        }
+        .section-content {
+          padding: 20px;
+        }
+        .method-content {
+          padding: 15px;
+        }
+        .step-content {
+          padding: 12px;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="header">
-      <h1>📚 Educational Printer Installation Guide</h1>
-      <p>Step-by-step learning tutorial with official download links</p>
-    </div>
+    <header class="header">
+      <h1>🖨️ Brother Printer Setup Guide</h1>
+      <p>
+        Complete educational tutorial for Brother printer installation and
+        troubleshooting
+      </p>
+    </header>
 
-    <div class="breadcrumb">
-      <a href="index.html">Home</a> >
-      <a href="index.html">Installation Guides</a> > Printer Setup Guide
-    </div>
-
-    <div class="container">
+    <main class="container">
       <div class="warning-box">
-        <h3>⚠ Important Educational Notice</h3>
-        <p>
-          <strong>This is an educational guide only.</strong> We do not provide
-          technical support services or host any software files. All printer
-          drivers must be downloaded from official manufacturer websites. For
-          technical support, contact the manufacturer directly.
-        </p>
+        <strong>⚠️ Educational Notice:</strong> This guide is for educational
+        purposes only. We do not provide technical support services or host
+        software files. Always download drivers from official Brother support
+        website at
+        <a href="https://support.brother.com" target="_blank" rel="nofollow"
+          >support.brother.com</a
+        >
       </div>
 
-      <div class="guide-content">
-        <h2>🖨 Comprehensive Printer Driver Installation Tutorial</h2>
-
-        <h3>📋 What You'll Learn in This Guide:</h3>
-        <ul>
-          <li>How to identify your printer model correctly</li>
-          <li>Where to find official manufacturer drivers</li>
-          <li>Step-by-step installation process</li>
-          <li>Common troubleshooting solutions</li>
-          <li>Best practices for printer setup</li>
-        </ul>
-
-        <h3>🔧 Pre-Installation Educational Checklist:</h3>
-        <div class="step-box">
-          <h4>Before You Begin:</h4>
-          <ul>
-            <li>✅ Ensure your printer is powered ON</li>
-            <li>✅ Have a reliable internet connection</li>
-            <li>✅ Know your exact printer model number</li>
-            <li>✅ Check your Windows version (10 or 11)</li>
-            <li>✅ Have administrator access to your computer</li>
-          </ul>
+      <!-- Pre-Installation Section -->
+      <section class="section" id="preparation">
+        <div class="section-header">
+          <h2>Pre-Installation Preparation</h2>
         </div>
+        <div class="section-content">
+          <div class="method">
+            <div class="method-header">
+              <div class="method-number">1</div>
+              <div class="method-title">System Requirements & Setup</div>
+            </div>
+            <div class="method-content">
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">1</div>
+                  <div class="step-title">Check System Compatibility</div>
+                </div>
+                <div class="step-content">
+                  <p>Verify your system meets Brother printer requirements:</p>
+                  <ul>
+                    <li>Windows 10 (version 1903 or later) or Windows 11</li>
+                    <li>Minimum 4GB RAM, recommended 8GB</li>
+                    <li>At least 1GB free disk space</li>
+                    <li>USB 2.0 or higher port for wired connection</li>
+                    <li>Wi-Fi network for wireless setup</li>
+                  </ul>
+                  <div class="tip-box">
+                    <strong>💡 Pro Tip:</strong> Check Windows version by
+                    pressing Windows + R, typing "winver" and pressing Enter.
+                  </div>
+                </div>
+              </div>
 
-        <h3>📝 Step-by-Step Installation Tutorial:</h3>
-
-        <div class="step-box">
-          <h4>Step 1: Identify Your Printer Model</h4>
-          <p>
-            Look for the model number on your printer (usually on a label at the
-            front or back). Common examples include:
-          </p>
-          <ul>
-            <li>DCP-L2541DW</li>
-            <li>HL-L2375DW</li>
-            <li>MFC-L2750DW</li>
-          </ul>
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">2</div>
+                  <div class="step-title">
+                    Identify Your Brother Printer Model
+                  </div>
+                </div>
+                <div class="step-content">
+                  <p>Locate your exact Brother printer model number:</p>
+                  <ul>
+                    <li>Check the front panel below display screen</li>
+                    <li>Look at back panel near power connection</li>
+                    <li>Check bottom of printer for model sticker</li>
+                    <li>Access printer menu: Settings > Machine Info</li>
+                  </ul>
+                  <p><strong>Common Brother Models:</strong></p>
+                  <ul>
+                    <li>DCP-L2541DW, DCP-L2550DW (Compact laser printers)</li>
+                    <li>HL-L2375DW, HL-L2395DW (Laser printers)</li>
+                    <li>MFC-L2750DW, MFC-L2770DW (All-in-one laser)</li>
+                    <li>MFC-J995DW, MFC-J4335DW (Inkjet all-in-one)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="step-box">
-          <h4>Step 2: Visit Official Manufacturer Website</h4>
-          <p>Always download drivers from official sources:</p>
-          <ul>
-            <li><strong>For Brother Printers:</strong> support.brother.com</li>
-          </ul>
+      <!-- Driver Download Section -->
+      <section class="section" id="download">
+        <div class="section-header">
+          <h2>Brother Driver Download Process</h2>
         </div>
+        <div class="section-content">
+          <div class="method">
+            <div class="method-header">
+              <div class="method-number">2</div>
+              <div class="method-title">Download Official Brother Drivers</div>
+            </div>
+            <div class="method-content">
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">1</div>
+                  <div class="step-title">Visit Brother Official Support</div>
+                </div>
+                <div class="step-content">
+                  <p>Always download from Brother's official website:</p>
+                  <ol>
+                    <li>Go to <strong>support.brother.com</strong></li>
+                    <li>Enter your printer model in search box</li>
+                    <li>Select your exact model from results</li>
+                    <li>Choose your operating system (Windows 10/11)</li>
+                    <li>Click "Downloads" tab</li>
+                  </ol>
+                  <div class="download-section">
+                    <h3>Brother Official Support</h3>
+                    <a
+                      href="https://support.brother.com"
+                      target="_blank"
+                      rel="nofollow noopener"
+                      class="official-link"
+                      >Visit Brother Support Site</a
+                    >
+                  </div>
+                </div>
+              </div>
 
-        <div class="step-box">
-          <h4>Step 3: Search for Your Model</h4>
-          <p>On the manufacturer's support page:</p>
-          <ol>
-            <li>Enter your exact printer model in the search box</li>
-            <li>Select your model from the results</li>
-            <li>Choose your operating system (Windows 10/11)</li>
-            <li>
-              Look for "Full Driver Package" or "Complete Driver Software"
-            </li>
-          </ol>
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">2</div>
+                  <div class="step-title">Select Correct Driver Package</div>
+                </div>
+                <div class="step-content">
+                  <p>Download the complete driver package:</p>
+                  <ul>
+                    <li>
+                      Look for "Full Feature Software and Driver" (recommended)
+                    </li>
+                    <li>File size should be 100MB+ for complete package</li>
+                    <li>Avoid "Basic Driver" unless specifically needed</li>
+                    <li>Check publication date for latest version</li>
+                    <li>Read system requirements before downloading</li>
+                  </ul>
+                  <div class="tip-box">
+                    <strong>💡 Important:</strong> Full Feature package includes
+                    printer driver, scanner driver, Brother software suite, and
+                    utilities.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="step-box">
-          <h4>Step 4: Download Process</h4>
-          <p>Educational tips for safe downloading:</p>
-          <ul>
-            <li>Always download the "Full Feature Driver"</li>
-            <li>Check file size (should be 100MB+ for complete packages)</li>
-            <li>Verify download completion before installation</li>
-            <li>Scan downloaded file with antivirus (optional)</li>
-          </ul>
+      <!-- Installation Process -->
+      <section class="section" id="installation">
+        <div class="section-header">
+          <h2>Brother Printer Installation Process</h2>
         </div>
+        <div class="section-content">
+          <div class="method">
+            <div class="method-header">
+              <div class="method-number">3</div>
+              <div class="method-title">Install Brother Driver Software</div>
+            </div>
+            <div class="method-content">
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">1</div>
+                  <div class="step-title">Prepare for Installation</div>
+                </div>
+                <div class="step-content">
+                  <p>Before running the installer:</p>
+                  <ul>
+                    <li>Close all running applications</li>
+                    <li>Temporarily disable antivirus software</li>
+                    <li>Ensure stable internet connection</li>
+                    <li>
+                      Connect Brother printer to power (don't connect USB yet)
+                    </li>
+                    <li>Have administrator privileges ready</li>
+                  </ul>
+                </div>
+              </div>
 
-        <div class="step-box">
-          <h4>Step 5: Installation Process</h4>
-          <p>Follow these educational steps:</p>
-          <ol>
-            <li>Right-click downloaded file → "Run as administrator"</li>
-            <li>Follow the installation wizard</li>
-            <li>Choose "USB" or "Network" connection as appropriate</li>
-            <li>Connect printer when prompted</li>
-            <li>Complete setup and print test page</li>
-          </ol>
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">2</div>
+                  <div class="step-title">Run Installation Wizard</div>
+                </div>
+                <div class="step-content">
+                  <p>Execute the downloaded Brother driver file:</p>
+                  <ol>
+                    <li>
+                      Right-click downloaded file and select "Run as
+                      administrator"
+                    </li>
+                    <li>Accept User Account Control prompt</li>
+                    <li>Click "Yes" to begin installation</li>
+                    <li>Accept Brother license agreement</li>
+                    <li>Choose "Recommended Installation" for full features</li>
+                    <li>Select connection type when prompted</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-header" onclick="toggleStep(this)">
+                  <div class="step-number">3</div>
+                  <div class="step-title">Configure Connection Method</div>
+                </div>
+                <div class="step-content">
+                  <h4>For USB Connection:</h4>
+                  <ul>
+                    <li>Select "USB" as connection type</li>
+                    <li>Connect USB cable when installer prompts</li>
+                    <li>Wait for Windows to recognize printer</li>
+                    <li>Continue with installation</li>
+                  </ul>
+                  <h4>For Wi-Fi Connection:</h4>
+                  <ul>
+                    <li>Select "Wireless Network Connection"</li>
+                    <li>Ensure printer and computer on same network</li>
+                    <li>Use printer's Wi-Fi setup wizard if needed</li>
+                    <li>Enter network password when prompted</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="download-section">
-          <h3>🔗 Official Download Links</h3>
-          <p>
-            <strong>Remember:</strong> Always download from official
-            manufacturer websites only!
-          </p>
-
-          <a
-            href="https://support.brother.com"
-            target="_blank"
-            rel="nofollow noopener"
-            class="official-link"
-          >
-            Visit Brother Official Support
-          </a>
-          <br />
-
-          <p>
-            <em
-              >Note: These links will take you to official manufacturer websites
-              where you can search for your specific model and download the
-              appropriate drivers.</em
-            >
-          </p>
+      <!-- Troubleshooting Section -->
+      <section class="section" id="troubleshooting">
+        <div class="section-header">
+          <h2>Brother Printer Troubleshooting</h2>
         </div>
+        <div class="section-content">
+          <div class="troubleshoot-grid">
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Printer Not Detected</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Check USB cable connection at both ends</li>
+                <li>Try different USB port on computer</li>
+                <li>Restart Brother printer and computer</li>
+                <li>Update Windows to latest version</li>
+                <li>Reinstall Brother drivers</li>
+                <li>Check Brother printer is powered on</li>
+              </ul>
+            </div>
 
-        <h3>🔧 Common Issues & Educational Solutions:</h3>
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Installation Failed</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Run installer as Administrator</li>
+                <li>Disable antivirus temporarily</li>
+                <li>Clear temp files from Windows</li>
+                <li>Download fresh Brother driver file</li>
+                <li>Install in Windows Safe Mode</li>
+                <li>Check available disk space</li>
+              </ul>
+            </div>
 
-        <div class="step-box">
-          <h4>❌ Issue: Printer Not Detected</h4>
-          <p><strong>Educational Solution:</strong></p>
-          <ul>
-            <li>Check USB cable connection</li>
-            <li>Try different USB port</li>
-            <li>Ensure printer is powered ON</li>
-            <li>Restart both printer and computer</li>
-          </ul>
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Print Quality Issues</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Check Brother toner/ink levels</li>
+                <li>Run Brother's cleaning utility</li>
+                <li>Align print heads via Brother software</li>
+                <li>Use genuine Brother cartridges</li>
+                <li>Check paper type settings</li>
+                <li>Clean printer interior carefully</li>
+              </ul>
+            </div>
+
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Wi-Fi Connection Problems</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Verify Wi-Fi network password</li>
+                <li>Move Brother printer closer to router</li>
+                <li>Restart router and printer</li>
+                <li>Use 2.4GHz network instead of 5GHz</li>
+                <li>Reset Brother network settings</li>
+                <li>Update Brother printer firmware</li>
+              </ul>
+            </div>
+
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Scanner Not Working</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Install Brother scanner driver separately</li>
+                <li>Check Brother scanner is enabled</li>
+                <li>Update Brother software suite</li>
+                <li>Run Brother troubleshooting tool</li>
+                <li>Reinstall Brother scanner drivers</li>
+                <li>Check Brother scanner connection</li>
+              </ul>
+            </div>
+
+            <div class="troubleshoot-card">
+              <h4>❌ Brother Slow Printing</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Change Brother print quality to "Fast"</li>
+                <li>Update Brother printer drivers</li>
+                <li>Clear Windows print spooler</li>
+                <li>Use USB instead of Wi-Fi connection</li>
+                <li>Close unnecessary applications</li>
+                <li>Check Brother printer memory</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>📞 Official Brother Support:</strong> For advanced technical
+            issues, contact Brother customer service or visit their online chat
+            support at support.brother.com
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="step-box">
-          <h4>❌ Issue: Installation Failed</h4>
-          <p><strong>Educational Solution:</strong></p>
-          <ul>
-            <li>Run installer as administrator</li>
-            <li>Temporarily disable antivirus</li>
-            <li>Clear previous installation files</li>
-            <li>Download fresh driver file</li>
-          </ul>
-        </div>
+    <script>
+      function toggleStep(header) {
+        const content = header.nextElementSibling;
+        const isActive = content.classList.contains("active");
 
-        <div class="step-box">
-          <h4>❌ Issue: Driver Compatibility</h4>
-          <p><strong>Educational Solution:</strong></p>
-          <ul>
-            <li>Verify Windows version compatibility</li>
-            <li>Check for Windows updates</li>
-            <li>Download latest driver version</li>
-            <li>Use Windows compatibility mode if needed</li>
-          </ul>
-        </div>
+        // Close all other steps in the same method
+        const method = header.closest(".method");
+        const allSteps = method.querySelectorAll(".step-content");
+        allSteps.forEach((step) => step.classList.remove("active"));
 
-        <h3>❓ Educational FAQ:</h3>
+        // Toggle current step
+        if (!isActive) {
+          content.classList.add("active");
+        }
+      }
 
-        <div class="step-box">
-          <h4>Q: Are printer drivers free to download?</h4>
-          <p>
-            <strong>A:</strong> Yes, all official manufacturer drivers are
-            completely free. Never pay for printer drivers from third-party
-            sites.
-          </p>
-        </div>
-
-        <div class="step-box">
-          <h4>Q: How often should I update drivers?</h4>
-          <p>
-            <strong>A:</strong> Update drivers when you experience issues or
-            after major Windows updates. Check manufacturer websites quarterly
-            for updates.
-          </p>
-        </div>
-
-        <div class="step-box">
-          <h4>Q: Can I use generic drivers?</h4>
-          <p>
-            <strong>A:</strong> While Windows may install basic drivers
-            automatically, manufacturer-specific drivers provide full
-            functionality and better performance.
-          </p>
-        </div>
-
-        <div class="warning-box">
-          <h3>📚 Educational Reminder</h3>
-          <p>
-            This guide is for educational purposes only. We do not provide
-            technical support services. For official technical support:
-          </p>
-          <ul>
-            <li><strong>Brother:</strong> Contact Brother Customer Service</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="guide-content">
-        <h3>🎓 What You've Learned:</h3>
-        <ul>
-          <li>How to safely identify and download official printer drivers</li>
-          <li>Step-by-step installation process</li>
-          <li>Troubleshooting common installation issues</li>
-          <li>Best practices for printer driver management</li>
-          <li>Where to get official technical support</li>
-        </ul>
-
-        <p>
-          <strong>Remember:</strong> Always use official manufacturer websites
-          for downloads and support!
-        </p>
-
-        <div style="text-align: center; margin: 30px 0">
-          <a href="index.html" class="official-link">Back to Guide Hub</a>
-        </div>
-      </div>
-    </div>
+      // Auto-open first step of each method
+      document.addEventListener("DOMContentLoaded", function () {
+        const firstSteps = document.querySelectorAll(
+          ".method .step:first-child .step-content"
+        );
+        firstSteps.forEach((step) => step.classList.add("active"));
+      });
+    </script>
   </body>
 </html>
