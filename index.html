@@ -559,6 +559,24 @@
         }
       }
     </style>
+    <!-- Event snippet for Page view conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-17544504610/V1ZyCNaH4ZgbEKLK761B",
+          value: 1.0,
+          currency: "INR",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
   </head>
   <body>
     <header class="header">
@@ -609,7 +627,9 @@
         links.
       </p>
       <input type="text" placeholder="Example: DCP-L2541DW, HL-L2375DW" />
-      <a href="./pages/device.html" class="setup-button">NEXT</a>
+      <a href="./pages/device.html" class="setup-button" id="nextButton"
+        >NEXT</a
+      >
     </section>
 
     <section class="issues-grid" id="troubleshooting">
