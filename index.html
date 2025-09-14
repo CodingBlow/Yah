@@ -8,6 +8,39 @@
       name="description"
       content="Educational printer installation guides and troubleshooting tips. Step-by-step instructions for printer setup with official download links."
     />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-17544504610"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "AW-17544504610");
+    </script>
+
+    <!-- Event snippet for Page view conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url !== "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-17544504610/V1ZyCNaH4ZgbEKLK761B",
+          value: 1.0,
+          currency: "INR",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
+
     <style>
       body {
         margin: 0;
@@ -230,7 +263,7 @@
       }
       .device-image {
         width: 200px;
-        height: 150px; /* Fixed height for consistency */
+        height: 150px;
         margin: 0 auto 15px;
         display: flex;
         align-items: center;
@@ -244,8 +277,8 @@
       .device-image img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures proper scaling without distortion */
-        object-position: center; /* Centers the image within container */
+        object-fit: cover;
+        object-position: center;
         transition: transform 0.3s ease;
       }
 
@@ -545,41 +578,6 @@
         }
       }
     </style>
-    <!-- Event snippet for Page view conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-    <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof url != "undefined") {
-            window.location = url;
-          }
-        };
-        gtag("event", "conversion", {
-          send_to: "AW-17544504610/V1ZyCNaH4ZgbEKLK761B",
-          value: 1.0,
-          currency: "INR",
-          event_callback: callback,
-        });
-        return false;
-      }
-    </script>
-    html page, add the snippet and call gtag_report_conversion when someone
-    clicks on the chosen link or button. -->
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-17544504610"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "AW-17544504610");
-    </script>
   </head>
   <body>
     <header class="header">
@@ -609,7 +607,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       <div class="devices-grid">
         <a href="#model-search" class="device-card">
           <div class="device-image">
-            <img src="./images/Scan.jpg" alt="Printer Guide" />
+            <img src="./images/Scan.jpg" alt="Scanner Guide" />
           </div>
           <p>Scanner Installation Guides</p>
         </a>
@@ -630,9 +628,13 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         links.
       </p>
       <input type="text" placeholder="Example: DCP-L2541DW, HL-L2375DW" />
-      <a href="./pages/device.html" class="setup-button" id="nextButton"
-        >NEXT</a
+      <button
+        class="setup-button"
+        id="nextButton"
+        onclick="return gtag_report_conversion('./pages/device.html')"
       >
+        NEXT
+      </button>
     </section>
 
     <section class="issues-grid" id="troubleshooting">
