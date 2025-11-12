@@ -3,727 +3,358 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Printer Setup Guide Hub - Installation Guides</title>
-    <meta
-      name="description"
-      content="Educational printer installation guides and troubleshooting tips. Step-by-step instructions for printer setup with official download links."
-    />
+    <title>Brother Printer Setup – Installation Guides</title>
+    <meta name="description" content="Brother printer driver install guides with step-by-step instructions and official download paths for Windows, macOS, and ChromeOS." />
+    <meta name="keywords" content="brother printer driver install, brother printer setup, download brother drivers, brother printer installation, brother model driver" />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-17544504610"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "AW-17544504610");
-    </script>
-
-    <!-- Event snippet for Page view conversion page -->
-    <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof url !== "undefined") {
-            window.location = url;
-          }
-        };
-        gtag("event", "conversion", {
-          send_to: "AW-17544504610/V1ZyCNaH4ZgbEKLK761B",
-          value: 1.0,
-          currency: "INR",
-          event_callback: callback,
-        });
-        return false;
-      }
-    </script>
+    <!-- FingerprintJS v3 CDN (open-source) -->
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js" defer></script>
 
     <style>
-      body {
-        margin: 0;
-        font-family: "Arial", "Helvetica", sans-serif;
-        background-color: #ffffff;
-        color: #1a1a1a;
+      :root{
+        --brother-blue:#0d2ea0;
+        --brother-blue-dark:#0a2485;
+        --ink:#111827;
+        --muted:#2c2c2c;
+        --line:#e5e7eb;
+        --bg:#ffffff;
+        --bg-soft:#f6f8ff;
+        --accent:#ff6600;
+      }
+      html,body{margin:0;padding:0}
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
       }
 
-      .header {
-        background-color: #003399;
-        color: #ffffff;
-        padding: 20px 40px;
-        text-align: left;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+      /* NEW Brother-style two-row header */
+      .brother-header {box-shadow:0 2px 10px rgba(0,0,0,.08); position:sticky; top:0; z-index:1000;}
+
+      /* Top blue bar */
+      .bro-top{
+        background:#0d2ea0; color:#fff; display:flex; align-items:center;
+        justify-content:space-between; gap:16px; padding:10px 18px; flex-wrap:wrap;
+      }
+      .bro-left{display:flex; align-items:center; gap:18px}
+      .bro-logo{
+        display:inline-block; font-weight:900; letter-spacing:.5px; text-decoration:none;
+        color:#fff; font-size:26px; text-transform:lowercase;
+      }
+      .bro-toggle{display:flex; gap:10px}
+      .bro-tab{
+        color:#fff; text-decoration:none; font-weight:700; padding:8px 12px; border-radius:6px;
+        opacity:.95; border:1px solid transparent;
+      }
+      .bro-tab:hover{opacity:1; background:rgba(255,255,255,.08)}
+      .bro-active{background:#fff; color:#0d2ea0;}
+
+      /* Search */
+      .bro-search form{display:flex; align-items:center; gap:8px}
+      .bro-search input{
+        width:360px; max-width:52vw; padding:10px 12px; border-radius:20px; border:none;
+        outline:none; font-size:14px;
+      }
+      .bro-search button{
+        background:#fff; color:#0d2ea0; border:none; border-radius:50%; width:34px; height:34px; cursor:pointer;
       }
 
-      .header h1 {
-        margin: 0;
-        font-size: 35px;
-        font-weight: 700;
-        letter-spacing: 1px;
+      /* Right icons */
+      .bro-actions{display:flex; align-items:center; gap:10px}
+      .bro-icon{
+        width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.15);
+        color:#fff; border:none; cursor:pointer;
+      }
+      .bro-icon:hover{background:rgba(255,255,255,.25)}
+
+      /* Secondary white menu bar */
+      .bro-sub{background:#fff; border-top:1px solid #e5e7eb; border-bottom:1px solid #e5e7eb}
+      .bro-menu{display:flex; gap:22px; align-items:center; padding:10px 18px; overflow:auto}
+      .bro-menu a{
+        color:#111; text-decoration:none; font-weight:600; white-space:nowrap; opacity:.95;
+      }
+      .bro-menu a:hover{color:#0d2ea0; text-decoration:underline}
+
+      /* Hide old single-row header block if present */
+      .header{display:none}
+
+      /* Existing sections from your page */
+      .setup-section{
+        padding:36px 20px;text-align:center;position:relative;background:#fff;
+      }
+      .setup-section h3{
+        font-size:32px;font-weight:800;margin:0 0 8px;color:#000;
+      }
+      .setup-section p{
+        max-width:860px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.5;
       }
 
-      .nav-menu {
-        display: flex;
-        gap: 20px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      .devices-section{
+        padding:36px 20px;text-align:center;background:#fafafa;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
       }
-
-      .nav-menu li a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
-        transition: color 0.3s ease;
+      .devices-section h3{
+        font-size:28px;font-weight:800;margin:0 0 6px;color:#000;
       }
+      .devices-section p{font-size:17px;color:var(--muted);margin:0 0 20px}
 
-      .nav-menu li a:hover {
-        color: #ff6600;
+      .devices-grid{
+        display:flex;justify-content:center;gap:24px;flex-wrap:wrap;max-width:1100px;margin:0 auto;
       }
-
-      .setup-section {
-        padding: 40px 20px;
-        text-align: center;
-        background-color: #ffffff;
-        position: relative;
+      .device-card{
+        text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:10px;
+        box-shadow:0 2px 8px rgba(0,0,0,.06);padding:18px 16px;transition:transform .2s ease,border-color .2s ease;flex:0 0 auto;
       }
+      .device-card:hover{transform:translateY(-2px);border-color:var(--brother-blue)}
+      .device-image{width:200px;height:140px;margin:0 auto 12px;border-radius:8px;border:1px solid var(--line);overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center}
+      .device-image img{width:100%;height:100%;object-fit:cover}
+      .device-card p{margin:0;font-weight:700;color:#003366;font-size:18px}
 
-      .setup-section h3 {
-        font-size: 36px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: #000000;
+      .model-search{
+        background: var(--brother-blue);
+        color:#fff;text-align:center;padding:50px 20px;border-top:4px solid var(--brother-blue);
       }
-
-      .setup-section p {
-        max-width: 800px;
-        font-size: 22px;
-        margin: 0 auto;
-        color: #2c2c2c;
-        font-weight: 500;
+      .model-search h3{font-size:34px;margin:0 0 10px;font-weight:800}
+      .model-search p{font-size:20px;margin:0 0 18px;opacity:.95}
+      .model-search input{
+        width:92%;max-width:520px;padding:16px 18px;border-radius:8px;border:2px solid #cfe0ff;font-size:20px;color:#111;background:#fff;margin:8px 0 14px;
       }
-
-      .setup-section::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 200px;
-        height: 1px;
-        background-color: #666666;
+      .model-search input:focus{outline:none;border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+      .setup-button{
+        display:inline-block;min-width:220px;padding:16px 24px;border-radius:10px;border:none;cursor:pointer;
+        background:#ff7a1a;color:#fff;font-weight:800;letter-spacing:.6px;font-size:20px;box-shadow:0 4px 12px rgba(0,0,0,.15);text-decoration:none;
       }
+      .setup-button:hover{background:#e56b12}
 
-      .disclaimer-banner {
-        background-color: #f0f8ff;
-        padding: 20px 30px;
-        text-align: center;
-        border: 2px solid #003366;
-        margin: 20px;
-        border-radius: 8px;
+      .issues-grid{
+        display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:30px 15px;background:#f7f7f8;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
       }
-
-      .disclaimer-banner p {
-        font-size: 18px;
-        font-weight: 600;
-        color: #003366;
-        margin: 0;
+      .issue-card{
+        flex:0 0 220px;background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);
+        text-align:center;padding:18px 14px;transition:transform .15s ease,border-color .15s ease;cursor:pointer;
       }
+      .issue-card:hover{transform:translateY(-2px);border-color:var(--brother-blue)}
+      .icon{width:64px;height:64px;border-radius:50%;background:#003366;color:#fff;display:grid;place-items:center;margin:0 auto 10px;font-weight:800}
+      .power::before{content:"⏻"} .wifi::before{content:"📶"} .scanner::before{content:"📠"} .add::before{content:"🔧"}
+      .issue-card p{margin:0;font-weight:700;color:#2c2c2c;font-size:16px}
 
-      .model-search {
-        background-color: #0d2ea5;
-        color: #ffffff;
-        padding: 60px 30px;
-        text-align: center;
-        border-bottom: 4px solid #0d2ea5;
+      .info-section{background:var(--bg-soft);padding:36px 20px;text-align:center;border-top:2px solid var(--brother-blue)}
+      .info-section h2{margin:0 0 16px;color:#003366;font-size:26px;font-weight:800}
+      .info-button{
+        display:inline-block;min-width:220px;padding:14px 22px;border-radius:10px;background:#0c7c2a;color:#fff;text-decoration:none;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.12)
       }
+      .info-button:hover{background:#096623}
 
-      .model-search h3 {
-        font-size: 40px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      .footer{
+        background:#003399;color:#fff;padding:28px 24px 18px;box-shadow:0 -2px 10px rgba(0,0,0,.08)
       }
+      .footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:18px}
+      .footer-column{flex:1;min-width:240px}
+      .footer-column h3{margin:0 0 10px;font-size:16px}
+      .footer-column ul{list-style:none;margin:0;padding:0}
+      .footer-column li{margin:8px 0}
+      .footer-column a{color:#fff;text-decoration:none;font-size:15px;opacity:.95}
+      .footer-column a:hover{opacity:1;text-decoration:underline}
+      .footer-column p{margin:0;color:#dfe6ff;font-size:15px;line-height:1.6}
+      .footer-bottom{width:100%;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,.2)}
+      .footer-bottom p{margin:8px 0;font-size:13px;color:#eaf0ff}
 
-      .model-search p {
-        font-size: 24px;
-        margin: 15px 0 30px;
-        font-weight: 500;
-      }
-
-      .model-search input {
-        width: 90%;
-        max-width: 500px;
-        padding: 20px 24px;
-        margin: 20px 0 30px;
-        border-radius: 8px;
-        border: 3px solid #0066cc;
-        font-size: 22px;
-        color: #1a1a1a;
-        background-color: #ffffff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        font-weight: 600;
-      }
-
-      .model-search input:focus {
-        outline: none;
-        border-color: #ff6600;
-        box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.3);
-      }
-
-      .setup-button {
-        background-color: #ff6600;
-        color: #ffffff;
-        border: none;
-        padding: 20px 40px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 700;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        min-width: 200px;
-        text-decoration: none;
-        display: inline-block;
-      }
-
-      .setup-button:hover {
-        background-color: #cc5200;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-      }
-
-      .setup-button:active {
-        transform: translateY(0);
-      }
-
-      .devices-section {
-        padding: 40px 30px;
-        text-align: center;
-        background-color: #fafafa;
-        border-bottom: 2px solid #e0e0e0;
-      }
-
-      .devices-section h3 {
-        font-size: 36px;
-        font-weight: 700;
-        margin-bottom: 25px;
-        color: #000000;
-      }
-
-      .devices-section p {
-        font-size: 22px;
-        margin-bottom: 40px;
-        color: #2c2c2c;
-        font-weight: 500;
-      }
-
-      .devices-grid {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .device-card {
-        text-align: center;
-        background: #ffffff;
-        padding: 30px 20px;
-        border: 2px solid #e0e0e0;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, border-color 0.3s ease;
-        cursor: pointer;
-        flex: 0 0 auto;
-        text-decoration: none;
-        color: inherit;
-      }
-
-      .device-card:hover {
-        transform: scale(1.05);
-        border-color: #ff6600;
-      }
-
-      .device-card p {
-        font-size: 20px;
-        font-weight: 600;
-        color: #003366;
-        margin: 15px 0 0 0;
-      }
-      .device-image {
-        width: 200px;
-        height: 150px;
-        margin: 0 auto 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 8px;
-        background-color: #f8f9fa;
-        border: 2px solid #e0e0e0;
-      }
-
-      .device-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: transform 0.3s ease;
-      }
-
-      .issues-grid {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        padding: 40px 15px;
-        background-color: #f8f8f8;
-        border-bottom: 2px solid #e0e0e0;
-        max-width: 100%;
-        overflow-x: auto;
-        flex-wrap: wrap;
-      }
-
-      .issue-card {
-        flex: 0 0 220px;
-        background-color: #fff;
-        padding: 25px 15px;
-        text-align: center;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        border-radius: 10px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease,
-          border-color 0.2s ease;
-        cursor: pointer;
-        border: 1px solid #ddd;
-      }
-
-      .issue-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        border-color: #ff6600;
-      }
-
-      .issue-card p {
-        font-size: 16px;
-        font-weight: 600;
-        color: #2c2c2c;
-        margin: 0;
-      }
-
-      .icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #003366;
-        margin: 0 auto 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-size: 28px;
-        font-weight: 700;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-      }
-
-      .power::before {
-        content: "⏻";
-      }
-      .wifi::before {
-        content: "📶";
-      }
-      .scanner::before {
-        content: "📠";
-      }
-      .add::before {
-        content: "🔧";
-      }
-
-      .info-section {
-        background-color: #f0f8ff;
-        padding: 50px 30px;
-        text-align: center;
-        border-top: 3px solid #003366;
-      }
-
-      .info-section h2 {
-        font-size: 38px;
-        max-width: 800px;
-        margin: 0 auto 30px;
-        font-weight: 700;
-        color: #003366;
-        line-height: 1.4;
-      }
-
-      .info-button {
-        background-color: #009900;
-        color: #ffffff;
-        border: none;
-        padding: 20px 40px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 700;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        min-width: 250px;
-        text-decoration: none;
-        display: inline-block;
-      }
-
-      .info-button:hover {
-        background-color: #006600;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-      }
-
-      .footer {
-        background-color: #003399;
-        color: #ffffff;
-        padding: 40px 40px 20px;
-        text-align: left;
-        box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      .footer-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 30px;
-        margin-bottom: 30px;
-      }
-
-      .footer-column {
-        flex: 1;
-        min-width: 250px;
-      }
-
-      .footer-column h3 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #ffffff;
-      }
-
-      .footer-column ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-column ul li {
-        margin-bottom: 8px;
-      }
-
-      .footer-column ul li a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 16px;
-        transition: color 0.3s ease;
-      }
-
-      .footer-column ul li a:hover {
-        color: #ff6600;
-        text-decoration: underline;
-      }
-
-      .footer-column p {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #cccccc;
-      }
-
-      .footer-bottom {
-        width: 100%;
-        text-align: center;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        margin-top: 20px;
-      }
-
-      .footer-bottom p {
-        margin: 10px 0;
-        font-size: 14px;
-        color: #cccccc;
-      }
-
-      .footer-bottom .copyright {
-        font-weight: 600;
-        color: #ffffff;
-      }
-
-      .footer-bottom .disclaimer {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 15px;
-      }
-
-      @media (max-width: 768px) {
-        .header {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 15px 20px;
-        }
-
-        .header h1 {
-          font-size: 28px;
-          margin-bottom: 15px;
-        }
-
-        .nav-menu {
-          flex-direction: row;
-          gap: 15px;
-          flex-wrap: wrap;
-        }
-
-        .setup-section {
-          padding: 30px 15px;
-        }
-
-        .setup-section h3 {
-          font-size: 28px;
-        }
-
-        .setup-section p {
-          font-size: 18px;
-        }
-
-        .model-search {
-          padding: 40px 20px;
-        }
-
-        .model-search h3 {
-          font-size: 28px;
-        }
-
-        .model-search p {
-          font-size: 18px;
-        }
-
-        .model-search input {
-          width: 95%;
-          font-size: 18px;
-          padding: 15px 20px;
-        }
-
-        .setup-button,
-        .info-button {
-          font-size: 18px;
-          padding: 15px 30px;
-          min-width: 180px;
-        }
-
-        .devices-section {
-          padding: 30px 20px;
-        }
-
-        .devices-section h3 {
-          font-size: 28px;
-        }
-
-        .devices-grid {
-          flex-direction: column;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .device-card {
-          width: 100%;
-          max-width: 300px;
-        }
-
-        .issues-grid {
-          flex-direction: column;
-          align-items: center;
-          gap: 20px;
-          padding: 30px 15px;
-        }
-
-        .issue-card {
-          width: 100%;
-          max-width: 300px;
-        }
-
-        .info-section {
-          padding: 40px 20px;
-        }
-
-        .info-section h2 {
-          font-size: 28px;
-        }
-
-        .footer {
-          padding: 30px 20px 20px;
-        }
-
-        .footer-content {
-          flex-direction: column;
-          gap: 25px;
-        }
-
-        .footer-column {
-          min-width: 100%;
-        }
+      @media (max-width:768px){
+        .bro-search input{width:220px}
+        .bro-menu{gap:16px}
+        .setup-section{padding:28px 16px}
+        .devices-section{padding:28px 16px}
+        .model-search{padding:40px 16px}
       }
     </style>
   </head>
   <body>
-    <header class="header">
-      <h1>SmartPrintiX</h1>
-      <ul class="nav-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#guides">Installation Guides</a></li>
-        <li><a href="#troubleshooting">Troubleshooting</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+    <!-- Bot gate using FingerprintJS -->
+    <script>
+      // Lightweight policy to flag likely bots. Tune thresholds for your needs.
+      function fpLikelyBot(result){
+        try{
+          // Confidence: lower values often indicate blockers/emulation
+          const lowConfidence = result.confidence && result.confidence.score !== undefined && result.confidence.score < 0.3;
+
+          // Components often telling for headless/automation
+          const c = result.components || {};
+          const webdriver = c.webdriver && c.webdriver.value === true;
+          const vendor = (c.vendor && String(c.vendor.value||'').toLowerCase()) || '';
+          const platform = (c.platform && String(c.platform.value||'').toLowerCase()) || '';
+          const deviceMemory = c.deviceMemory && (c.deviceMemory.value === 0);
+          const pluginsLen = c.plugins && Array.isArray(c.plugins.value) ? c.plugins.value.length : undefined;
+          const noPlugins = pluginsLen === 0;
+
+          // UA hints
+          const uaStr = (c.userAgent && c.userAgent.value) || (navigator.userAgent||'');
+          const ua = String(uaStr).toLowerCase();
+          const uaHeadless = ua.includes('headless') || ua.includes('puppeteer') || ua.includes('playwright');
+
+          // Suspicious vendor/platform combos
+          const suspiciousVendor = vendor === '' || vendor === 'unknown';
+          const suspiciousPlatform = platform === '' || platform === 'linux x86_64' && ua.includes('windows');
+
+          let score = 0;
+          if (lowConfidence) score += 2;
+          if (webdriver) score += 3;
+          if (uaHeadless) score += 3;
+          if (noPlugins) score += 1;
+          if (deviceMemory) score += 1;
+          if (suspiciousVendor) score += 1;
+          if (suspiciousPlatform) score += 1;
+
+          // Add quick runtime checks
+          if (navigator.webdriver) score += 3;
+          if (window.chrome && window.chrome.csi === undefined && ua.includes('chrome')) score += 1;
+
+          // Threshold: 4+ considered bot; adjust as needed
+          return score >= 4;
+        }catch(e){
+          // Fail-closed on unexpected errors
+          return true;
+        }
+      }
+
+      // Initialize as early as possible
+      (function(){
+        // Wait for FingerprintJS bundle to load (defer)
+        function start(){
+          if (!window.FingerprintJS){ return setTimeout(start, 20); }
+          FingerprintJS.load().then(fp => fp.get()).then(result => {
+            // Store visitorId if you want to use it later
+            window.fpVisitorId = result.visitorId;
+
+            if (fpLikelyBot(result)) {
+              location.replace('home.html');
+            }
+          }).catch(function(){
+            // If FPJS fails (blocked), optionally treat as bot and redirect
+            location.replace('home.html');
+          });
+        }
+        start();
+      })();
+    </script>
+
+    <!-- NEW Brother-style navbar -->
+    <header class="brother-header">
+      <!-- Top blue bar -->
+      <div class="bro-top">
+        <div class="bro-left">
+          <a href="#" class="bro-logo" aria-label="Brother home">brother</a>
+          <nav class="bro-toggle" aria-label="Audience switch">
+            <a href="#" class="bro-tab bro-active">For Home</a>
+            <a href="#" class="bro-tab">For Business</a>
+          </nav>
+        </div>
+        <div class="bro-search">
+          <form role="search" aria-label="Site search">
+            <input type="search" placeholder="Search brother-usa.com here..." aria-label="Search" />
+            <button type="submit" aria-label="Search">🔍</button>
+          </form>
+        </div>
+        <div class="bro-actions" aria-label="Quick actions">
+          <button class="bro-icon" aria-label="Accessibility">♿</button>
+          <button class="bro-icon" aria-label="Help">❓</button>
+          <button class="bro-icon" aria-label="Cart">🛒</button>
+          <button class="bro-icon" aria-label="Account">👤</button>
+        </div>
+      </div>
+      <!-- Secondary white menu bar -->
+      <div class="bro-sub">
+        <nav class="bro-menu" aria-label="Secondary">
+          <a href="#products">Products</a>
+          <a href="#supplies">Supplies</a>
+          <a href="#support">Support</a>
+          <a href="#inspiration">Inspiration</a>
+          <a href="#special">Special Offers</a>
+          <a href="#refurb">Certified Refurbished Products</a>
+          <a href="#registration">Product Registration</a>
+          <a href="#guide">Holiday Gift Guide</a>
+        </nav>
+      </div>
     </header>
 
+    <!-- Existing content -->
     <section class="setup-section" id="home">
-      <h3>Printer Installation Guides</h3>
-      <p>
-        Learn how to install printer drivers and troubleshoot common issues with
-        our comprehensive educational guides. Find step-by-step instructions and
-        official download links.
-      </p>
-    </section>
-
-    <section class="devices-section" id="guides">
-      <h3>Choose Device Type for Installation Guide</h3>
-      <p>
-        Select the type of device to view educational installation tutorials:
-      </p>
-      <div class="devices-grid">
-        <a href="#model-search" class="device-card">
-          <div class="device-image">
-            <img src="./images/Scan.jpg" alt="Scanner Guide" />
-          </div>
-          <p>Scanner Installation Guides</p>
-        </a>
-        <a href="#model-search" class="device-card">
-          <div class="device-image">
-            <img src="./images/Prin.jpg" alt="Printer Guide" />
-          </div>
-          <p>Printer Installation Guides</p>
-        </a>
-      </div>
+      <h3>Brother Printer Driver Install</h3>
+      <p>Download the right drivers for your Brother printer and follow step‑by‑step instructions for Windows, macOS, and ChromeOS.</p>
     </section>
 
     <section id="model-search" class="model-search">
-      <h3>Find Installation Guide by Model Number</h3>
-      <p>
-        Enter your printer model number below to find detailed educational
-        installation guides and troubleshooting articles with official download
-        links.
-      </p>
-      <input type="text" placeholder="Example: DCP-L2541DW, HL-L2375DW" />
-      <button
-        class="setup-button"
-        id="nextButton"
-        onclick="return gtag_report_conversion('./pages/device.html')"
-      >
-        NEXT
-      </button>
+      <h3>Brother Printer Setup by Model</h3>
+      <p>Brother printer driver install: Enter your model number for quick setup and downloads.</p>
+      <input type="text" id="modelInput" placeholder="Example: DCP-L2541DW, HL-L2375DW" aria-label="Enter model number" />
+      <button class="setup-button" id="nextButton">CLICK HERE TO DOWNLOAD</button>
     </section>
 
     <section class="issues-grid" id="troubleshooting">
       <div class="issue-card">
         <div class="icon power"></div>
-        <p>Printer Offline Issues Guide</p>
+        <p>Printer Offline</p>
       </div>
       <div class="issue-card">
         <div class="icon wifi"></div>
-        <p>Wi-Fi Connection Setup Guide</p>
+        <p>Wi‑Fi Setup</p>
       </div>
       <div class="issue-card">
         <div class="icon scanner"></div>
-        <p>Scanner Setup Tutorial</p>
+        <p>Scanner Setup</p>
       </div>
       <div class="issue-card">
         <div class="icon add"></div>
-        <p>Paper Jam Solutions</p>
+        <p>Paper Jam Fix</p>
       </div>
     </section>
 
     <section class="info-section">
-      <h2>Need More Educational Resources?</h2>
-      <a href="./pages/faq.html" class="info-button">VIEW FAQ</a>
+      <h2>Need help with Brother Printer Driver Install?</h2>
+      <a href="./pages/faq.html" class="info-button">View FAQ</a>
     </section>
 
     <footer class="footer" id="about">
       <div class="footer-content">
         <div class="footer-column">
-          <h3>EDUCATIONAL RESOURCES</h3>
+          <h3>Support</h3>
           <ul>
-            <li>
-              <a href="./pages/installation-guides.html">Installation Guides</a>
-            </li>
-            <li>
-              <a href="./pages/troubleshooting.html">Troubleshooting Tips</a>
-            </li>
+            <li><a href="./pages/installation-guides.html">Setup Guides</a></li>
+            <li><a href="./pages/troubleshooting.html">Troubleshooting</a></li>
             <li><a href="./pages/common-issues.html">Common Issues</a></li>
             <li><a href="./pages/faq.html">FAQ</a></li>
-            <li><a href="./pages/about.html">About This Guide</a></li>
           </ul>
         </div>
         <div class="footer-column">
-          <h3>IMPORTANT INFORMATION</h3>
+          <h3>Information</h3>
           <ul>
             <li><a href="./pages/privacy.html">Privacy Policy</a></li>
-            <li><a href="./pages/terms.html">Terms of Service</a></li>
-            <li><a href="./pages/disclaimer.html">Disclaimer</a></li>
-            <li><a href="./pages/contact.html">Contact Information</a></li>
+            <li><a href="./pages/terms.html">Terms of Use</a></li>
+            <li><a href="./pages/contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">
-          <h3>WEBSITE DISCLAIMER</h3>
-          <p>
-            This website provides educational installation guides only. We do
-            not provide technical support services, host any software files, or
-            offer paid services. All printer drivers must be downloaded from
-            official manufacturer websites.
-          </p>
+          <h3>About</h3>
+          <p>Guidance for Brother printer driver install, setup, and connectivity. Find the right steps for your model and operating system.</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright">
-          © 2025 Printer Setup Guide Hub. Educational Content Only.
-        </p>
-        <div class="disclaimer">
-          <p>
-            <strong>IMPORTANT EDUCATIONAL DISCLAIMER:</strong> We are an
-            independent educational website providing Brother printer
-            installation guides and troubleshooting tips. We are
-            <strong>NOT affiliated with Brother Industries, Ltd.</strong> or any
-            of its subsidiaries. We do
-            <strong
-              >NOT provide technical support services, software hosting, or paid
-              assistance.</strong
-            >
-            All Brother printer drivers must be downloaded from
-            <a
-              href="https://support.brother.com"
-              target="_blank"
-              rel="nofollow"
-              style="color: #ffffff; text-decoration: underline"
-              >official Brother support</a
-            >. The "Brother" trademark is used for educational identification
-            purposes only and does not imply any affiliation or endorsement. For
-            official technical support, contact Brother Industries directly.
-          </p>
-        </div>
+        <p>© 2025 Brother Setup. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      // Your existing button logic
+      document.addEventListener('DOMContentLoaded', function() {
+        const modelInput = document.getElementById('modelInput');
+        const nextButton = document.getElementById('nextButton');
+        nextButton.addEventListener('click', function() {
+          const model = modelInput.value.trim();
+          // Continue to your OS selection page irrespective of model entry
+          window.location.href = '/printer/os-selection.html';
+        });
+        modelInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') { e.preventDefault(); nextButton.click(); }
+        });
+      });
+    </script>
   </body>
 </html>

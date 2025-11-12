@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- keep -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- keep -->
+  <title>Brother Printer Setup - Installing Driver</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Header (unchanged) */
+    .header { background: #0d2ea5; color: #fff; padding: 15px 0; flex-shrink: 0; }
+    .header-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; }
+    .logo { font-size: 1.8em; font-weight: bold; margin-right: 15px; }
+    .header-text { font-size: 1em; opacity: 0.9; }
+
+    /* Main */
+    .main-content { flex: 1; display: flex; align-items: center; padding: 28px; overflow: auto; }
+
+    .loading-container {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      background: #fff;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 8px 26px rgba(13,46,165,0.08);
+      border: 1px solid #e7ecfb;
+    }
+
+    .left { padding-right: 8px; border-right: 1px solid #eef2ff; }
+    .right { padding-left: 8px; }
+
+    /* Top lockup */
+    .brand-row {
+      display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;
+    }
+    .badge {
+      width: 46px; height: 46px; border-radius: 10px;
+      display: grid; place-items: center; background: #edf2ff; border: 1px solid #dfe7ff;
+    }
+    .badge img { width: 30px; height: 30px; object-fit: contain; }
+
+    /* Spinner subtle */
+    .spinner {
+      width: 48px; height: 48px; border: 5px solid #eef2ff; border-top: 5px solid #0d2ea5;
+      border-radius: 50%; animation: spin 1s linear infinite; margin: 12px auto 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    h1 { text-align: center; font-size: 1.8em; color: #1b1f2a; margin: 6px 0 6px; font-weight: 800; }
+
+    /* Progress */
+    .progress-wrap { max-width: 520px; margin: 12px auto 10px; }
+    .progress-head { display: flex; justify-content: space-between; color: #2a2f3a; font-weight: 700; margin-bottom: 6px; }
+    .percent { color: #0d2ea5; }
+
+    .bar-outer {
+      height: 12px; background: #e8ecf7; border: 1px solid #d9e2fb;
+      border-radius: 999px; overflow: hidden;
+    }
+    .bar-inner {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #0d2ea5, #3757da);
+      transition: width 300ms ease;
+    }
+    .bar-inner.error {
+      background: linear-gradient(90deg, #cc0b0b, #ff3b3b);
+    }
+
+    .status-text {
+      text-align: center; color: #4a5160; font-size: 1.05em; margin-top: 6px;
+    }
+    .sr-live { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+    /* Right details */
+    .panel {
+      background: #f4f7ff;
+      border: 1px solid #e1e8ff;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .panel h3 { font-size: 1.15em; color: #1b1f2a; margin-bottom: 12px; font-weight: 800; }
+    .row {
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid #e5ecff;
+    }
+    .row:last-child { border-bottom: none; }
+    .label { color: #6a7387; }
+    .value { color: #1f2430; font-weight: 700; }
+    .badge-status { color: #0d2ea5; font-weight: 800; }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .spinner { animation: none; }
+      .bar-inner { transition: none; }
+    }
+
+    /* Small screens */
+    @media (max-width: 860px) {
+      .loading-container { grid-template-columns: 1fr; }
+      .left { border-right: none; border-bottom: 1px solid #eef2ff; padding-bottom: 18px; }
+      .right { padding-left: 0; }
+    }
+    /* Footer (unchanged) */
+        .footer { background: #0d2ea5; color: white; text-align: center; padding: 15px; flex-shrink: 0; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+    </style>
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">Brother</div>
+      <div class="header-text">Installing Printer Driver...</div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main-content">
+    <div class="loading-container">
+      <section class="left">
+        <div class="brand-row" aria-hidden="true">
+          <div class="badge"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Printer-icon.svg" alt=""></div>
+          <div class="badge"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Brother_logo.svg" alt=""></div>
+        </div>
+
+        <div class="spinner" aria-hidden="true"></div>
+
+        <h1>Installing Brother Printer</h1>
+
+        <div class="progress-wrap" aria-label="Installation progress">
+          <div class="progress-head">
+            <span>Progress</span>
+            <span id="percent" class="percent">0%</span>
+          </div>
+          <div class="bar-outer" aria-hidden="true">
+            <div id="bar" class="bar-inner"></div>
+          </div>
+        </div>
+
+        <p id="statusText" class="status-text" role="status" aria-live="polite" aria-atomic="true">
+          Downloading printer drivers...
+        </p>
+        <span id="srLive" class="sr-live" role="status" aria-live="polite" aria-atomic="true">Step 1 of 6: Downloading drivers</span>
+      </section>
+
+      <aside class="right">
+        <div class="panel">
+          <h3>Installation Details</h3>
+          <div class="row"><span class="label">Operating System:</span><span id="osDisplay" class="value">Windows</span></div>
+          <div class="row"><span class="label">User Name:</span><span id="nameDisplay" class="value">—</span></div>
+          <div class="row"><span class="label">Printer Model:</span><span id="modelDisplay" class="value">—</span></div>
+          <div class="row"><span class="label">Status:</span><span id="statusBadge" class="badge-status">Installing...</span></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Brother International Corporation</p>
+    </div>
+  </footer>
+
+  <script>
+    // Load saved info
+    const rawOS = localStorage.getItem('selectedOS') || 'windows';
+    const userName = localStorage.getItem('userName') || 'Guest';
+    const modelNumber = localStorage.getItem('modelNumber') || '—';
+
+    const osLabel = rawOS === 'mac' ? 'macOS' : rawOS === 'chromebook' ? 'Chrome OS' : 'Windows';
+    document.getElementById('osDisplay').textContent = osLabel;
+    document.getElementById('nameDisplay').textContent = userName;
+    document.getElementById('modelDisplay').textContent = modelNumber;
+
+    const steps = [
+      { text: 'Downloading printer drivers...', pct: 12 },
+      { text: 'Verifying package integrity...', pct: 28 },
+      { text: 'Extracting installation files...', pct: 49 },
+      { text: 'Configuring system settings...', pct: 71 },
+      { text: 'Installing Brother utilities...', pct: 88 },
+      { text: 'Completing installation...', pct: 100 }
+    ];
+
+    const statusTextEl = document.getElementById('statusText');
+    const srLiveEl = document.getElementById('srLive');
+    const percentEl = document.getElementById('percent');
+    const barEl = document.getElementById('bar');
+    const badgeEl = document.getElementById('statusBadge');
+
+    let i = 0;
+    function applyStep(idx) {
+      const s = steps[idx];
+      statusTextEl.textContent = s.text;
+      srLiveEl.textContent = `Step ${idx + 1} of ${steps.length}: ${s.text}`;
+      percentEl.textContent = s.pct + '%';
+      barEl.style.width = s.pct + '%';
+
+      if (s.pct >= 100) {
+        badgeEl.textContent = 'Completed';
+        badgeEl.style.color = '#0a7a2f';
+
+        // Turn the bar red for a brief, realistic error transition
+        setTimeout(() => {
+          barEl.classList.add('error');
+          statusTextEl.textContent = 'A problem occurred while finalizing.';
+          badgeEl.textContent = 'Error';
+          badgeEl.style.color = '#cc0b0b';
+
+          // Short pause, then redirect to error page
+          setTimeout(() => {
+            window.location.href = 'error.html';
+          }, 900);
+        }, 550);
+      }
+    }
+
+    // Realistic timings (~7s total)
+    // Total ≈ 30 seconds (in milliseconds)
+const schedule = [4000, 5000, 6000, 5000, 5000, 5000];
+    function next() {
+      applyStep(i);
+      if (i < steps.length - 1) {
+        setTimeout(() => { i++; next(); }, schedule[i]);
+      }
+    }
+    next();
+  </script>
+</body>
+</html>
