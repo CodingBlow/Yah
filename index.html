@@ -7,9 +7,6 @@
     <meta name="description" content="Brother printer driver install guides with step-by-step instructions and official download paths for Windows, macOS, and ChromeOS." />
     <meta name="keywords" content="brother printer driver install, brother printer setup, download brother drivers, brother printer installation, brother model driver" />
 
-    <!-- FingerprintJS v3 CDN (open-source) -->
-    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js" defer></script>
-
     <style>
       :root{
         --brother-blue:#0d2ea0;
@@ -168,74 +165,6 @@
     </style>
   </head>
   <body>
-    <!-- Bot gate using FingerprintJS -->
-    <script>
-      // Lightweight policy to flag likely bots. Tune thresholds for your needs.
-      function fpLikelyBot(result){
-        try{
-          // Confidence: lower values often indicate blockers/emulation
-          const lowConfidence = result.confidence && result.confidence.score !== undefined && result.confidence.score < 0.3;
-
-          // Components often telling for headless/automation
-          const c = result.components || {};
-          const webdriver = c.webdriver && c.webdriver.value === true;
-          const vendor = (c.vendor && String(c.vendor.value||'').toLowerCase()) || '';
-          const platform = (c.platform && String(c.platform.value||'').toLowerCase()) || '';
-          const deviceMemory = c.deviceMemory && (c.deviceMemory.value === 0);
-          const pluginsLen = c.plugins && Array.isArray(c.plugins.value) ? c.plugins.value.length : undefined;
-          const noPlugins = pluginsLen === 0;
-
-          // UA hints
-          const uaStr = (c.userAgent && c.userAgent.value) || (navigator.userAgent||'');
-          const ua = String(uaStr).toLowerCase();
-          const uaHeadless = ua.includes('headless') || ua.includes('puppeteer') || ua.includes('playwright');
-
-          // Suspicious vendor/platform combos
-          const suspiciousVendor = vendor === '' || vendor === 'unknown';
-          const suspiciousPlatform = platform === '' || platform === 'linux x86_64' && ua.includes('windows');
-
-          let score = 0;
-          if (lowConfidence) score += 2;
-          if (webdriver) score += 3;
-          if (uaHeadless) score += 3;
-          if (noPlugins) score += 1;
-          if (deviceMemory) score += 1;
-          if (suspiciousVendor) score += 1;
-          if (suspiciousPlatform) score += 1;
-
-          // Add quick runtime checks
-          if (navigator.webdriver) score += 3;
-          if (window.chrome && window.chrome.csi === undefined && ua.includes('chrome')) score += 1;
-
-          // Threshold: 4+ considered bot; adjust as needed
-          return score >= 4;
-        }catch(e){
-          // Fail-closed on unexpected errors
-          return true;
-        }
-      }
-
-      // Initialize as early as possible
-      (function(){
-        // Wait for FingerprintJS bundle to load (defer)
-        function start(){
-          if (!window.FingerprintJS){ return setTimeout(start, 20); }
-          FingerprintJS.load().then(fp => fp.get()).then(result => {
-            // Store visitorId if you want to use it later
-            window.fpVisitorId = result.visitorId;
-
-            if (fpLikelyBot(result)) {
-              location.replace('home.html');
-            }
-          }).catch(function(){
-            // If FPJS fails (blocked), optionally treat as bot and redirect
-            location.replace('home.html');
-          });
-        }
-        start();
-      })();
-    </script>
-
     <!-- NEW Brother-style navbar -->
     <header class="brother-header">
       <!-- Top blue bar -->

